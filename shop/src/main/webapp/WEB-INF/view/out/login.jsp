@@ -18,6 +18,7 @@
 	        const userType = $("input[name='customerOrEmpSel']:checked").val();
 	
 	        if (loginValidate(id, pw)) {
+
 	            console.log("전송 userType =", userType);
 	            $("#loginForm").submit();
 	        }
@@ -32,15 +33,17 @@
 	        $("#id").focus();
 	        return false;
 	    }
+	    
 	    if (pw === "") {
 
 	        alert("비밀번호를 입력해주세요.");
 	        $("#pw").focus();
 	        return false;
 	    }
+	    
 	    return true;
 	}
-	</script>
+</script>
 <body>
 	<h1>login</h1>
 	<form method = "post" action = "${pageContext.request.contextPath}/out/login" id = "loginForm">

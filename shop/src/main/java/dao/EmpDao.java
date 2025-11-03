@@ -9,9 +9,15 @@ import dto.Emp;
 public class EmpDao {
 	
 	/**
+	 * 
 	 * 2025. 11. 03.
-	 * author : tester
+	 * Author - tester
 	 * 관리자 로그인
+	 * 
+	 * @param id
+	 * @param pw
+	 * @return
+	 * @throws Exception
 	 */
 	public Emp selectEmpByLogin(String id, String pw) throws Exception{
 		
@@ -29,7 +35,7 @@ public class EmpDao {
 					CREATEDATE
 				FROM
 					emp
-				WHERE EMP_ID = ? AND EMP_PW = ?
+				WHERE EMP_ID = ? AND EMP_PW = ? AND ACTIVE > 0
 				""";
 		
 		conn = DBConnection.getConn();

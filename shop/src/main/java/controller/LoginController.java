@@ -24,7 +24,7 @@ public class LoginController extends HttpServlet {
        
 
 	/**
-	 * form
+	 * 
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -32,7 +32,7 @@ public class LoginController extends HttpServlet {
 	}
 
 	/**
-	 * action
+	 * 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -51,10 +51,9 @@ public class LoginController extends HttpServlet {
 				
 				Customer loginCustomer = customerDao.selectCustomerByLogin(id, pw);
 				
-				
 				if (loginCustomer == null) {
 					
-					System.out.println("Customer Login FAILED");
+					System.out.println("Customer Login NULL FAILED");
 					response.sendRedirect(request.getContextPath()+"/home");
 					return;
 				}
@@ -79,7 +78,7 @@ public class LoginController extends HttpServlet {
 				
 				if (loginEmp == null) {
 					
-					System.out.println("Emp Login FAILED");
+					System.out.println("Emp Login NULL FAILED");
 					response.sendRedirect(request.getContextPath()+"/home");
 					return;
 				}
@@ -91,8 +90,6 @@ public class LoginController extends HttpServlet {
 				System.out.println("Emp Login FAILED");
 				e.printStackTrace();
 			}
-			
 		}
 	}
-
 }
