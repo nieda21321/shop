@@ -8,18 +8,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class HomeController
+ * Servlet implementation class CustomerIndexController
  */
-@WebServlet("/home")
-public class HomeController extends HttpServlet {
+@WebServlet("/customer/customerIndex")
+public class CustomerIndexController extends HttpServlet {
 
 	/**
-	 * 
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("WEB-INF/view/home.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("/WEB-INF/view/customer/customerIndex.jsp").forward(request, response);
 	}
 
 }
