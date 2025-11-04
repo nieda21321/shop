@@ -133,7 +133,15 @@ public class CustomerDao {
 	
 	public boolean addMemberIdChk(String customerId) throws Exception {
 	    
-		String sql = "SELECT COUNT(*) FROM customer WHERE customer_id = ?";
+		String sql = """
+				SELECT count(id)
+				FROM
+					(
+					SELECT customer_id AS id FROM customer
+				UNION
+					SELECT emp_id AS id FROM emp )
+				WHERE id = ?
+				""";
 
 	    try (Connection conn = DBConnection.getConn();
 	         PreparedStatement psmt = conn.prepareStatement(sql)) {

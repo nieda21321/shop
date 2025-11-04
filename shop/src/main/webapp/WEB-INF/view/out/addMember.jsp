@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/addMember.css">
 </head>
 
-<!-- ✅ 스크립트를 head와 body 사이에 배치 -->
 <script>
 	$(function(){
 	    let isIdChecked = false; // 사용여부 확인
@@ -22,7 +21,8 @@
 	
 	        $('#idError').css('color','red').text('');
 	        if(!idPattern.test(id)) {
-	            $('#idError').text('아이디는 영어와 숫자로 4~20자여야 합니다.');
+	            
+	        	$('#idError').text('아이디는 영어와 숫자로 4~20자여야 합니다.');
 	            return;
 	        }
 	
@@ -50,52 +50,99 @@
 	        });
 	    });
 	
-	    // ✅ 회원가입 버튼 클릭
+	    //  회원가입 버튼 클릭
 	    $('#submitBtn').on('click', function(){
-	        $('.error').text('');
+	       
+	    	$('.error').text('');
 	        $('#idError').css('color', 'red'); // 초기화
 	
 	        let id = $('#customerId').val().trim();
 	        let pw = $('#customerPw').val().trim();
+	        let pwConfirm = $('#customerPwConfirm').val().trim();
 	        let name = $('#customerName').val().trim();
 	        let phone = $('#customerPhone').val().trim();
 	        let address = $('#address').val().trim();
 	
 	        let isValid = true;
-	
+	        
 	        // 아이디 유효성 검사
 	        let idPattern = /^[a-zA-Z0-9]{4,20}$/;
 	        if(!idPattern.test(id)) {
-	            $('#idError').text('아이디는 영어와 숫자로 4~20자여야 합니다.');
+	          
+	        	$('#idError').text('아이디는 영어와 숫자로 4~20자여야 합니다.');
 	            isValid = false;
 	        }
 	
 	        if(!isIdChecked) {
-	            $('#idError').text('아이디 중복체크를 해주세요.');
+	           
+	        	$('#idError').text('아이디 중복체크를 해주세요.');
 	            isValid = false;
 	        }
 	
 	        // PW 검사 (4~20자, 영어+숫자)
 	        let pwPattern = /^[a-zA-Z0-9]{4,20}$/;
 	        if(!pwPattern.test(pw)) {
-	            $('#pwError').text('비밀번호는 영어와 숫자로 4~20자여야 합니다.');
+	            
+	        	$('#pwError').text('비밀번호는 영어와 숫자로 4~20자여야 합니다.');
+	            isValid = false;
+	        }
+	        
+	        // 비밀번호 확인 검사
+	        if(pw !== pwConfirm) {
+	           
+	        	$('#pwConfirmError').text('비밀번호가 일치하지 않습니다.');
 	            isValid = false;
 	        }
 	
 	        // 이름 검사 (정확히 4자)
 	        if(name.length !== 4) {
-	            $('#nameError').text('이름은 정확히 4자여야 합니다.');
+	          
+	        	$('#nameError').text('이름은 정확히 4자여야 합니다.');
 	            isValid = false;
 	        }
 	
 	        // 전화번호 검사 (000-0000-0000 or 000-000-0000)
 	        let phonePattern = /^01[0-9]-\d{3,4}-\d{4}$/;
 	        if(!phonePattern.test(phone)) {
-	            $('#phoneError').text('전화번호 형식은 010-0000-0000 또는 010-000-0000 이어야 합니다.');
+	           
+	        	$('#phoneError').text('전화번호 형식은 010-0000-0000 또는 010-000-0000 이어야 합니다.');
 	            isValid = false;
 	        } else {
-	            phone = phone.replace(/-/g, '');
+	          
+	        	phone = phone.replace(/-/g, '');
 	            $('#customerPhone').val(phone);
+	        }
+	        
+	    	 // 공백 검사
+	        if (id === "") {
+	           
+	        	$('#idError').text('아이디를 입력해주세요.');
+	            isValid = false;
+	        }
+	        if (pw === "") {
+	            
+	        	$('#pwError').text('비밀번호를 입력해주세요.');
+	            isValid = false;
+	        }
+	        if (pwConfirm === "") {
+	          
+	        	$('#pwConfirmError').text('비밀번호 확인을 입력해주세요.');
+	            isValid = false;
+	        }
+	        if (name === "") {
+	           
+	        	$('#nameError').text('이름을 입력해주세요.');
+	            isValid = false;
+	        }
+	        if (phone === "") {
+	           
+	        	$('#phoneError').text('전화번호를 입력해주세요.');
+	            isValid = false;
+	        }
+	        if (address === "") {
+	           
+	        	$('#addressError').text('주소를 입력해주세요.');
+	            isValid = false;
 	        }
 	
 	        if(isValid){
@@ -126,6 +173,13 @@
                 <div class="error" id="pwError"></div>
             </td>
         </tr>
+         <tr>
+            <td>비밀번호 확인</td>
+            <td>
+                <input type="password" id="customerPwConfirm" name="customerPwConfirm" maxlength="20">
+                <div class="error" id="pwConfirmError"></div>
+            </td>
+        </tr>
         <tr>
             <td>이름</td>
             <td>
@@ -144,6 +198,7 @@
             <td>주소</td>
             <td>
                 <input type="text" id="address" name="address">
+                <div class="error" id="addressError"></div>
             </td>
         </tr>
         <tr>
