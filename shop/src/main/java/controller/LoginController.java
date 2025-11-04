@@ -9,8 +9,6 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-import org.apache.catalina.Session;
-
 import dao.CustomerDao;
 import dao.EmpDao;
 import dto.Customer;

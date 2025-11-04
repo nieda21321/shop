@@ -17,7 +17,7 @@ import dao.CustomerDao;
  * 
  */
 @WebServlet("/out/addMember")
-public class addMemberController extends HttpServlet {
+public class AddMemberController extends HttpServlet {
 
 	/**
 	 * 2025. 11. 03.

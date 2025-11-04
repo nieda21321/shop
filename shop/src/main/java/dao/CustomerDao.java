@@ -80,8 +80,6 @@ public class CustomerDao {
 				INSERT ALL
 					  INTO customer (customer_code, customer_id, customer_pw, customer_name, customer_phone, point, createdate)
 					    VALUES (SEQ_CUSTOMER.NEXTVAL, ?, ?, ?, ?, ?, SYSDATE)
-					  INTO customer_address (address_code, customer_code, address, createdate)
-					    VALUES (SEQ_ADDRESS.NEXTVAL, SEQ_CUSTOMER.CURRVAL, ?, SYSDATE)
 					  INTO address (address_code, customer_code, address, createdate)
 					    VALUES (SEQ_ADDRESS.CURRVAL, SEQ_CUSTOMER.CURRVAL, ?, SYSDATE)
 					  INTO pw_history (customer_code, pw, createdate)
@@ -100,10 +98,9 @@ public class CustomerDao {
 	            psmt.setString(4, (String)member.get("customerPhone"));  // customer_phone
 	            psmt.setInt(5, (Integer)member.getOrDefault("point", 0)); // point
 
-	            psmt.setString(6, (String)member.get("address"));        // customer_address.address
-	            psmt.setString(7, (String)member.get("address"));        // address.address
+	            psmt.setString(6, (String)member.get("address"));        // address.address
 
-	            psmt.setString(8, (String)member.get("customerPw"));     // pw_history.pw
+	            psmt.setString(7, (String)member.get("customerPw"));     // pw_history.pw
 
 	            row = psmt.executeUpdate();
 

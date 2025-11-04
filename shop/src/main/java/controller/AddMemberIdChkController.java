@@ -13,7 +13,7 @@ import dao.CustomerDao;
  * Servlet implementation class addMemberIdChkController
  */
 @WebServlet("/out/checkId")
-public class addMemberIdChkController extends HttpServlet {
+public class AddMemberIdChkController extends HttpServlet {
 	
 	/**
 	 * 
