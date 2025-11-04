@@ -1,4 +1,4 @@
-package controller;
+package ajax;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,10 +13,13 @@ import dao.CustomerDao;
  * Servlet implementation class addMemberIdChkController
  */
 @WebServlet("/out/checkId")
-public class AddMemberIdChkController extends HttpServlet {
+public class AddMemberIdChkRestController extends HttpServlet {
 	
 	/**
 	 * 
+	 * 2025. 11. 03.
+	 * author - tester
+	 * 사용자 가입 아이디 중복 검증 처리
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	       

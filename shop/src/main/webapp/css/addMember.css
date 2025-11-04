@@ -1,144 +1,190 @@
-/* 전체 레이아웃 */
+/* ==============================
+   회원가입 페이지 (로그인 스타일 버전)
+   ============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600&display=swap');
+
 body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background: linear-gradient(180deg, #f5f6fa 0%, #f9fafc 100%);
+  margin: 0;
+  padding: 0;
 }
 
-/* 제목 */
+/* ===== 메인 컨테이너 ===== */
+form {
+  width: 460px;
+  background-color: #fff;
+  margin: 60px auto;
+  padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== 제목 ===== */
 h2 {
-    text-align: center;
-    margin-top: 60px;
-    color: #333;
+  font-size: 26px;
+  color: #2d2d3a;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
 }
 
-/* 회원가입 폼 */
-#joinForm {
-    width: 400px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 35px 45px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* 테이블 */
+/* ===== 테이블 ===== */
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
 }
 
 td {
-    padding: 10px 0;
-    font-size: 14px;
-    color: #333;
-    vertical-align: top; /* 세로 정렬도 깔끔하게 */
+  padding: 12px 8px;
+  vertical-align: middle;
+  font-size: 15px;
+  color: #333;
 }
 
-/* input 기본 스타일 */
+td:first-child {
+  width: 100px;
+  font-weight: 600;
+  color: #2f3640;
+}
+
+/* ===== input 공통 스타일 ===== */
 input[type="text"],
 input[type="password"] {
-   box-sizing: border-box; /* ✅ 추가 — padding과 border 포함 */
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #dcdfe6;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  background-color: #fff;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* input focus 시 효과 */
 input[type="text"]:focus,
 input[type="password"]:focus {
-    border-color: #0078ff;
-    box-shadow: 0 0 5px rgba(0, 120, 255, 0.3);
-    outline: none;
+  border-color: #a3bffa;
+  box-shadow: 0 0 6px rgba(100, 149, 237, 0.25);
 }
 
-/* 회원가입 버튼 */
+/* ===== 아이디 + 중복체크 버튼 한줄 정렬 ===== */
+.input-with-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-with-btn input[type="text"] {
+  flex: 1;
+}
+
+/* ===== 중복체크 버튼 (로그인 페이지 톤) ===== */
+.check-btn {
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #6c63ff 0%, #8e79ff 100%);
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(108, 99, 255, 0.25);
+}
+
+.check-btn:hover {
+  background: linear-gradient(135deg, #5b54e2 0%, #7d6eff 100%);
+  transform: translateY(-2px);
+}
+
+.check-btn:active {
+  transform: scale(0.97);
+}
+
+/* ===== 에러 메시지 ===== */
+.error {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* ===== 전화번호 입력 (3칸) ===== */
+.phone-input {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.phone-input input[type="text"] {
+  width: 70px;
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #dcdfe6;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.phone-input input[type="text"]:focus {
+  border-color: #a3bffa;
+  box-shadow: 0 0 6px rgba(100, 149, 237, 0.25);
+}
+
+/* ===== 회원가입 버튼 ===== */
 #submitBtn {
-    width: 100%;
-    background-color: #0078ff;
-    color: #fff;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  width: 100%;
+  padding: 13px 0;
+  background: linear-gradient(135deg, #6c63ff 0%, #8e79ff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 6px 14px rgba(108, 99, 255, 0.25);
 }
 
 #submitBtn:hover {
-    background-color: #005dc1;
+  background: linear-gradient(135deg, #5b54e2 0%, #7d6eff 100%);
+  transform: translateY(-2px);
 }
 
-/* 에러 메시지 */
-.error {
-    color: #d9534f;
-    font-size: 12px;
-    margin-top: 4px;
+#submitBtn:active {
+  transform: scale(0.98);
 }
 
-/* 아이디 중복확인 버튼 */
-#checkIdBtn {
-    display: inline-block;
-    margin-left: 8px;
-    padding: 8px 12px;
-    font-size: 13px;
-    background-color: #ccc; /* 연한 회색 */
-    color: #333;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    vertical-align: middle;
-}
+/* ===== 반응형 (모바일 최적화) ===== */
+@media (max-width: 500px) {
+  form {
+    width: 90%;
+    padding: 30px;
+  }
 
-#checkIdBtn:hover {
-    background-color: #bbb;
-}
+  td:first-child {
+    display: block;
+    margin-bottom: 4px;
+  }
 
-/* 아이디 input + 중복확인 버튼 정렬 */
-.idCell {
-    position: relative;
-}
+  td {
+    display: block;
+    width: 100%;
+  }
 
-.idCell input {
-    width: calc(100% - 90px); /* 버튼 영역 제외 */
-    display: inline-block;
-}
+  .phone-input {
+    justify-content: center;
+  }
 
-.idCell #checkIdBtn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 38px; /* input 높이와 맞춤 */
-}
+  .input-with-btn {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-/* 링크 영역 */
-.form-footer {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.form-footer a {
-    color: #0078ff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.2s;
-}
-
-.form-footer a:hover {
-    color: #005dc1;
-    text-decoration: underline;
-}
-
-/* 반응형 (모바일 대응) */
-@media (max-width: 480px) {
-    #joinForm {
-        width: 90%;
-        padding: 25px;
-    }
+  .check-btn {
+    width: 100%;
+  }
 }

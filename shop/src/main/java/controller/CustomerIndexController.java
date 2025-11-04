@@ -14,7 +14,9 @@ import java.io.IOException;
 public class CustomerIndexController extends HttpServlet {
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 2025. 11. 04.
+	 * author - tester
+	 * 고객 상단 인덱스
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

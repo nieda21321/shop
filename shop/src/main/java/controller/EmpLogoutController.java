@@ -9,6 +9,9 @@ import java.io.IOException;
 
 /**
  * 
+ * 2025. 11. 03.
+ * author - tester
+ * 사원 로그아웃 페이징
  */
 @WebServlet("/emp/empLogout")
 public class EmpLogoutController extends HttpServlet {

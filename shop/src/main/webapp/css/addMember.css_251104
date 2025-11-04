@@ -1,0 +1,144 @@
+/* 전체 레이아웃 */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* 제목 */
+h2 {
+    text-align: center;
+    margin-top: 60px;
+    color: #333;
+}
+
+/* 회원가입 폼 */
+#joinForm {
+    width: 400px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 35px 45px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 테이블 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 10px 0;
+    font-size: 14px;
+    color: #333;
+    vertical-align: top; /* 세로 정렬도 깔끔하게 */
+}
+
+/* input 기본 스타일 */
+input[type="text"],
+input[type="password"] {
+   box-sizing: border-box; /* ✅ 추가 — padding과 border 포함 */
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* input focus 시 효과 */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #0078ff;
+    box-shadow: 0 0 5px rgba(0, 120, 255, 0.3);
+    outline: none;
+}
+
+/* 회원가입 버튼 */
+#submitBtn {
+    width: 100%;
+    background-color: #0078ff;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#submitBtn:hover {
+    background-color: #005dc1;
+}
+
+/* 에러 메시지 */
+.error {
+    color: #d9534f;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* 아이디 중복확인 버튼 */
+#checkIdBtn {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    background-color: #ccc; /* 연한 회색 */
+    color: #333;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    vertical-align: middle;
+}
+
+#checkIdBtn:hover {
+    background-color: #bbb;
+}
+
+/* 아이디 input + 중복확인 버튼 정렬 */
+.idCell {
+    position: relative;
+}
+
+.idCell input {
+    width: calc(100% - 90px); /* 버튼 영역 제외 */
+    display: inline-block;
+}
+
+.idCell #checkIdBtn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 38px; /* input 높이와 맞춤 */
+}
+
+/* 링크 영역 */
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-footer a {
+    color: #0078ff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.form-footer a:hover {
+    color: #005dc1;
+    text-decoration: underline;
+}
+
+/* 반응형 (모바일 대응) */
+@media (max-width: 480px) {
+    #joinForm {
+        width: 90%;
+        padding: 25px;
+    }
+}

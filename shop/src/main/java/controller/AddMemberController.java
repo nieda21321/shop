@@ -21,7 +21,8 @@ public class AddMemberController extends HttpServlet {
 
 	/**
 	 * 2025. 11. 03.
-	 * 
+	 * author - tester
+	 * 고객 회원가입 페이징 
 	 * addMemberform
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,7 +33,8 @@ public class AddMemberController extends HttpServlet {
 
 	/**
 	 * 2025. 11. 03.
-	 * 
+	 * author - tester
+	 * 고객 회원가입 기능 처리
 	 * addMemberAction
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

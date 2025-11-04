@@ -103,16 +103,23 @@ public class EmpDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public int addEmpMemberIdVaild(String Id) throws Exception{
+	public int addEmpMemberIdValid(String Id) throws Exception{
 		
-		int vaildChk = 0;
+		int validChk = 0;
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
 		String sql ="""
-				SELECT COUNT(*) FROM EMP
-				WHERE EMP_ID = ?
+				SELECT count(id)
+				FROM
+				( 
+					SELECT customer_id AS id FROM customer
+				UNION ALL
+					SELECT emp_id AS id FROM emp 
+				UNION ALL
+					SELECT id FROM outid )
+				WHERE id = ?
 				""";
 		
 		conn = DBConnection.getConn();
@@ -124,10 +131,10 @@ public class EmpDao {
 		
 		while(rs.next()) {
 			
-			vaildChk = rs.getInt("COUNT(*)");
+			validChk = rs.getInt("count(id)");
 		}
 		
-		return vaildChk;
+		return validChk;
 	}
 	
 	/**

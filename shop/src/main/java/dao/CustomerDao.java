@@ -70,6 +70,16 @@ public class CustomerDao {
 		return customer;
 	}
 	
+	/**
+	 * 
+	 * 2025. 11. 03.
+	 * Author - tester
+	 * 사용자 회원가입
+	 * 
+	 * @param addMemberList
+	 * @return
+	 * @throws Exception
+	 */
 	public int insertCustomer(List<Map<String, Object>> addMemberList) throws Exception {
 		
 		int row = 0;
@@ -81,7 +91,7 @@ public class CustomerDao {
 					  INTO customer (customer_code, customer_id, customer_pw, customer_name, customer_phone, point, createdate)
 					    VALUES (SEQ_CUSTOMER.NEXTVAL, ?, ?, ?, ?, ?, SYSDATE)
 					  INTO address (address_code, customer_code, address, createdate)
-					    VALUES (SEQ_ADDRESS.CURRVAL, SEQ_CUSTOMER.CURRVAL, ?, SYSDATE)
+					    VALUES (SEQ_ADDRESS.NEXTVAL, SEQ_CUSTOMER.CURRVAL, ?, SYSDATE)
 					  INTO pw_history (customer_code, pw, createdate)
 					    VALUES (SEQ_CUSTOMER.CURRVAL, ?, SYSDATE)
 					SELECT * FROM dual
@@ -127,16 +137,27 @@ public class CustomerDao {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * 2025. 11. 03.
+	 * Author - tester
+	 * 사용자 아이디 중복 체크
+	 * 
+	 * @param customerId
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean addMemberIdChk(String customerId) throws Exception {
 	    
 		String sql = """
 				SELECT count(id)
 				FROM
-					(
+				( 
 					SELECT customer_id AS id FROM customer
-				UNION
-					SELECT emp_id AS id FROM emp )
+				UNION ALL
+					SELECT emp_id AS id FROM emp 
+				UNION ALL
+					SELECT id FROM outid )
 				WHERE id = ?
 				""";
 

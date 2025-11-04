@@ -16,6 +16,9 @@ import dto.Emp;
 
 /**
  * 
+ * 2025. 11. 03.
+ * Author - tester
+ * 로그인 페이지 컨트롤러
  */
 @WebServlet("/out/login")
 public class LoginController extends HttpServlet {
@@ -23,6 +26,9 @@ public class LoginController extends HttpServlet {
 
 	/**
 	 * 
+	 * 2025. 11. 03.
+	 * Author - tester
+	 * 로그인 페이지
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -31,6 +37,9 @@ public class LoginController extends HttpServlet {
 
 	/**
 	 * 
+	 * 2025. 11. 03.
+	 * Author - tester
+	 * 로그인
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

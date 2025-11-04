@@ -14,7 +14,10 @@ import java.io.IOException;
 public class HomeController extends HttpServlet {
 
 	/**
-	 * 
+	 *
+	 * 2025. 11. 03.
+	 * author - tester
+	 * 홈 페이징
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	

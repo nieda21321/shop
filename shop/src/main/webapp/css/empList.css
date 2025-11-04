@@ -1,74 +1,163 @@
- body {
-        font-family: 'Noto Sans KR', sans-serif;
-        background-color: #f7f8fa;
-        padding: 30px;
-    }
+/* =========================
+   전체 기본 세팅
+========================= */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: linear-gradient(135deg, #f5f6fa, #eaeef3);
+  color: #2c3e50;
+  margin: 0;
+  padding: 40px;
+}
 
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+/* 제목 중앙 정렬 */
+h1 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 30px auto 25px auto;
+  letter-spacing: -0.3px;
+}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        background: white;
-        box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
-    }
+/* =========================
+   상단 컨트롤바
+========================= */
+.top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 20px auto 25px auto;
+  padding: 14px 20px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
 
-    th, td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: center;
-    }
+/* =========================
+   사원 추가 버튼
+========================= */
+.btn-add {
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-add:hover {
+  background: linear-gradient(90deg, #4338ca, #4f46e5);
+  transform: translateY(-1px);
+}
 
-    th {
-        background-color: #e0e0e0;
-    }
+/* =========================
+   페이징 영역
+========================= */
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-    .btn {
-        padding: 6px 12px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        color: white;
-        transition: 0.2s;
-    }
+.page-info {
+  font-weight: 500;
+  color: #64748b;
+}
 
-    .btn-add {
-        background-color: #4a90e2;
-        margin-bottom: 15px;
-    }
+/* 페이지 이동 버튼 */
+.btn-page {
+  background: #f8fafc;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-page:hover {
+  background: #e2e8f0;
+}
 
-    .btn-add:hover {
-        background-color: #357ab8;
-    }
+/* =========================
+   테이블
+========================= */
+table {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
 
-    .btn-active {
-        background-color: #4caf50;
-    }
+th, td {
+  text-align: center;
+  padding: 14px 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
 
-    .btn-inactive {
-        background-color: #f44336;
-    }
+th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #475569;
+}
 
-    .btn-page {
-        background-color: #607d8b;
-        margin: 5px;
-    }
+tr:hover {
+  background: #f9fafb;
+}
 
-    .btn-page:hover {
-        background-color: #455a64;
-    }
+/* =========================
+   상태 버튼
+========================= */
+.btn-active {
+  background: linear-gradient(90deg, #10b981, #34d399);
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+}
+.btn-active:hover {
+  background: linear-gradient(90deg, #059669, #10b981);
+}
 
-    .page-info {
-        display: inline-block;
-        margin: 0 10px;
-    }
+.btn-inactive {
+  background: linear-gradient(90deg, #f43f5e, #fb7185);
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+}
+.btn-inactive:hover {
+  background: linear-gradient(90deg, #e11d48, #f43f5e);
+}
 
-    .top-controls {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-    }
+/* =========================
+   반응형 대응
+========================= */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .top-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .pagination-controls {
+    justify-content: center;
+  }
+
+  table {
+    width: 100%;
+  }
+}

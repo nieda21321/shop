@@ -86,23 +86,25 @@ $(function() {
 <body>
     <h1>사원 리스트</h1>
     <c:import url="/WEB-INF/view/inc/empMenu.jsp"></c:import>
-
-    <div class="top-controls">
-        <button type="button" id="addEmpBtn" class="btn btn-add">사원 추가</button>
-        <div>
-            <button type="button" id="prevBtn" class="btn btn-page">이전</button>
-            <span class="page-info">${currentPage} / ${lastPage}</span>
-            <button type="button" id="nextBtn" class="btn btn-page">다음</button>
-        </div>
-    </div>
+    
+	<!-- 상단 컨트롤바 -->
+	<div class="top-controls">
+	    <button type="button" id="addEmpBtn" class="btn btn-add">사원 추가</button>
+	
+	    <div class="pagination-controls">
+	        <button type="button" id="prevBtn" class="btn btn-page">이전</button>
+	        <span class="page-info">${currentPage} / ${lastPage}</span>
+	        <button type="button" id="nextBtn" class="btn btn-page">다음</button>
+	    </div>
+	</div>
 
     <table>
         <tr>
-            <th>empCode</th>
-            <th>empId</th>
-            <th>empName</th>
-            <th>createdate</th>
-            <th>사용상태</th>
+            <th>사원 코드</th>
+            <th>사원 계정</th>
+            <th>사원명</th>
+            <th>가입 날짜</th>
+            <th>계정 사용상태</th>
         </tr>
 
         <c:forEach var="e" items="${empList}">

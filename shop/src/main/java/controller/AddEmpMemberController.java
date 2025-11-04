@@ -18,6 +18,10 @@ public class AddEmpMemberController extends HttpServlet {
 
 	/**
 	 * 
+	 * 2025. 11. 04.
+	 * author - tester
+	 * 사원 회원가입 페이징 
+	 * addEmpform 
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -26,6 +30,10 @@ public class AddEmpMemberController extends HttpServlet {
 
 	/**
 	 * 
+	 * 2025. 11. 04.
+	 * author - tester
+	 * 사원 회원가입 기능 처리 
+	 * addEmpform
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

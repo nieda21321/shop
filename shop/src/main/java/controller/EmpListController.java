@@ -18,7 +18,10 @@ import dto.Emp;
 public class EmpListController extends HttpServlet {
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 
+	 * 2025. 11. 04.
+	 * author - tester
+	 * 사원관리 - 사원 리스트 페이징
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

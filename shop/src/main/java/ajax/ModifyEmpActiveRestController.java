@@ -1,4 +1,4 @@
-package controller;
+package ajax;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,11 +13,14 @@ import dao.EmpDao;
  * Servlet implementation class modifyEmpActive
  */
 @WebServlet("/emp/modifyEmpActive")
-public class ModifyEmpActive extends HttpServlet {
+public class ModifyEmpActiveRestController extends HttpServlet {
        
 
 	/**
 	 * 
+	 * 2025. 11. 04.
+	 * author - tester
+	 * 사원 사용 상태 처리 REST 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
