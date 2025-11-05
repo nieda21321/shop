@@ -3,12 +3,234 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import dto.Customer;
+import dto.Outid;
 
 public class CustomerDao {
+	
+	
+	/**
+	 * 
+	 * 2025. 11. 05.
+	 * Author - tester
+	 * 고객 계정 탈퇴 처리 기능
+	 * @param oi
+	 */
+	public int removeCustomerByEmp(Outid oi) {
+
+		Connection conn = null;
+		PreparedStatement psmtCustomer = null;
+		PreparedStatement psmtOutid = null;
+		int row = 0;
+		int row2 = 0;
+		
+		String sqlCustomer = """
+				
+				delete from customer where customer_id = ?
+				""";
+		
+		String sqlOutid = """
+				
+				insert into outid(id, memo, createdate)
+				values (?, ?, sysdate)
+				""";
+		
+		// JDBC Connection의 기본 Commit 설정 값 auto commit = true;
+		// 해당 값을 false 로 변경 후 transaction 적용
+		try {
+			
+			conn = DBConnection.getConn();
+			
+			// 개발자가 commit / rollback 직접 구현 필요
+			conn.setAutoCommit(false);
+			
+			psmtCustomer = conn.prepareStatement(sqlCustomer);
+			psmtCustomer.setString(1, oi.getId());
+			row = psmtCustomer.executeUpdate();
+			
+			if (row == 1) {
+				
+				System.out.println("CUSTOMER DELETE SUCCESS");
+				psmtOutid = conn.prepareStatement(sqlOutid);
+				psmtOutid.setString(1, oi.getId());
+				psmtOutid.setString(2, oi.getMemo());
+				
+				row2 = psmtOutid.executeUpdate();
+				
+				if ( row2 == 1 ) {
+					
+					System.out.println("OUTID INSERT SUCCESS");
+				} else {
+					
+					System.out.println("OUTID INSERT FAILED");
+				}
+			} else {
+				
+				System.out.println("CUSTOMER DELETE NULL FAILED");
+				throw new SQLException();
+			}
+			
+			conn.commit();
+		} catch (SQLException e) {
+			
+			try {
+				
+				System.out.println("removeCustomerByEmp SQL ROLLBACK");
+				conn.rollback();
+			} catch (SQLException e1) {
+				
+				System.out.println("removeCustomerByEmp SQL ERR");
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				
+				psmtOutid.close();
+				psmtCustomer.close();
+				conn.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+		}
+		
+		return row2;
+	}
+	
+	
+	/**
+	 * 
+	 * 2025. 11. 05.
+	 * Author - tester
+	 * 직원 로그인시 전체 고객 리스트 확인
+	 * @param beginRow
+	 * @param rowPerPage
+	 * @return customerList
+	 * @throws Exception
+	 */
+	public List<Map<String, Object>> selectCustomerList(int beginRow, int rowPerPage) throws Exception{
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		String sql ="""
+				SELECT
+					c.customer_code AS customerCode,
+					c.customer_id AS customerId,
+					c.customer_pw AS customerPw,
+					c.customer_name AS customerName,
+					a.ADDRESS AS address,
+					c.customer_phone AS customerPhone,
+					c.point,
+					c.createdate
+				FROM
+					customer c
+				INNER JOIN ADDRESS a
+				ON c.CUSTOMER_CODE = a.CUSTOMER_CODE
+				ORDER BY customerCode desc
+				offset ? ROWS FETCH NEXT ? ROWS ONLY
+				""";
+		
+		conn = DBConnection.getConn();
+		psmt = conn.prepareStatement(sql);
+		
+		psmt.setInt(1, beginRow);
+		psmt.setInt(2, rowPerPage);
+		
+		rs = psmt.executeQuery();
+		
+		List<Map<String, Object>> customerList = new ArrayList<Map<String,Object>>();
+		
+		while (rs.next()) {
+			
+			Map<String, Object> m = new HashMap<String, Object>();
+			m.put("customerCode", rs.getInt("customerCode"));
+			m.put("customerId",rs.getString("customerId"));
+			m.put("customerPw",rs.getString("customerPw"));
+			m.put("customerName",rs.getString("customerName"));
+			m.put("address",rs.getString("address"));
+			m.put("customerPhone",rs.getString("customerPhone"));
+			m.put("point",rs.getString("point"));
+			m.put("createdate",rs.getString("createdate"));
+			customerList.add(m);
+		}
+		
+		rs.close();
+	    psmt.close();
+	    conn.close();
+		
+		return customerList;
+	}
+	
+	
+	/**
+	 * 
+	 * 2025. 11. 05.
+	 * 마지막 페이징 값
+	 * 
+	 * @param rowPerPage
+	 * @return
+	 * @throws Exception
+	 */
+	public int customerListLastPage(int rowPerPage) throws Exception{
+		
+		int lastPage = 0;
+		int allCnt = 0;
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		String sql ="""
+				SELECT
+					COUNT(*)
+				FROM
+					(
+					SELECT
+						c.customer_code AS customerCode,
+						c.customer_id AS customerId,
+						c.customer_pw AS customerPw,
+						c.customer_name AS customerName,
+						a.ADDRESS AS address,
+						c.customer_phone AS customerPhone,
+						c.point,
+						c.createdate
+					FROM
+						customer c
+					INNER JOIN ADDRESS a
+				ON
+						c.CUSTOMER_CODE = a.CUSTOMER_CODE )
+				""";
+		
+		conn = DBConnection.getConn();
+		psmt = conn.prepareStatement(sql);
+		
+		rs = psmt.executeQuery();
+		
+		while(rs.next()) {
+			
+			allCnt = rs.getInt("COUNT(*)");
+		}
+		
+		if ( allCnt % rowPerPage == 0 ) {
+			
+			lastPage = ( allCnt / rowPerPage );
+		} else {
+			
+			lastPage = ( allCnt / rowPerPage ) + 1;
+		}
+		
+		return lastPage;
+	}
 	
 	/**
 	 * 

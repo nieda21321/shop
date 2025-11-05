@@ -1,0 +1,126 @@
+/* ===== 기본 설정 ===== */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #eef1f5 100%);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin: 40px 0 25px 0;
+    font-size: 28px;
+    color: #2d3748;
+    letter-spacing: -0.5px;
+}
+
+/* ===== 상단 컨트롤바 ===== */
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    margin: 0 auto 25px auto;
+    background: #ffffff;
+    padding: 15px 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.page-info {
+    font-size: 15px;
+    color: #555;
+}
+
+/* =========================
+   페이징 영역
+========================= */
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-info {
+  font-weight: 500;
+  color: #64748b;
+}
+
+/* 페이지 이동 버튼 */
+.btn-page {
+  background: #f8fafc;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-page:hover {
+  background: #e2e8f0;
+}
+
+/* ===== 테이블 ===== */
+table {
+    width: 85%;
+    margin: 0 auto 60px auto;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    text-align: center;
+    padding: 14px 10px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    background: #f1f5f9;
+    color: #374151;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+td {
+    font-size: 14px;
+    color: #444;
+}
+
+/* 행 hover 효과 */
+tr:hover td {
+    background: #f9fafb;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 768px) {
+    table {
+        width: 95%;
+        font-size: 13px;
+    }
+
+    .top-controls {
+        flex-direction: column;
+        gap: 12px;
+        padding: 10px 15px;
+    }
+
+    .btn {
+        font-size: 13px;
+        padding: 7px 12px;
+    }
+
+    th, td {
+        padding: 10px 6px;
+    }
+}

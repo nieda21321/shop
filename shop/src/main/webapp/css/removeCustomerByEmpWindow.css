@@ -1,0 +1,120 @@
+<style>
+/* ✅ 전체 레이아웃 */
+body {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    background: linear-gradient(135deg, #f8f9fb, #e9edf3);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ✅ 폼 컨테이너 */
+.form-container {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 30px 40px;
+    width: 400px;
+    box-sizing: border-box;
+}
+
+/* ✅ 제목 */
+.form-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* ✅ 테이블 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+td {
+    padding: 10px 5px;
+    color: #333;
+    font-size: 14px;
+    vertical-align: top;
+}
+
+td:first-child {
+    width: 100px;
+    font-weight: 500;
+    color: #555;
+}
+
+/* ✅ 텍스트영역 */
+textarea {
+    width: 100%;
+    resize: none;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+textarea:focus {
+    border-color: #7b9acc;
+    outline: none;
+    box-shadow: 0 0 5px rgba(123, 154, 204, 0.3);
+}
+
+/* ✅ 버튼 그룹 */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+/* ✅ 공통 버튼 */
+.btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+/* ✅ 확인 버튼 */
+.btn-confirm {
+    background: linear-gradient(135deg, #4f6ef7, #6b8dfc);
+    color: white;
+}
+
+.btn-confirm:hover {
+    background: linear-gradient(135deg, #3e5fe2, #5e7df7);
+}
+
+/* ✅ 취소 버튼 */
+.btn-cancel {
+    background: #f1f1f1;
+    color: #333;
+}
+
+.btn-cancel:hover {
+    background: #e4e4e4;
+}
+
+/* ✅ 반응형 (작은 팝업 대비) */
+@media (max-width: 500px) {
+    .form-container {
+        width: 90%;
+        padding: 25px;
+    }
+    td:first-child {
+        width: 80px;
+    }
+}
+</style>
