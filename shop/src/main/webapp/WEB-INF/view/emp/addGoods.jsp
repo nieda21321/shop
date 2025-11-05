@@ -11,8 +11,6 @@
 	<h1>addGoods</h1>
 	<c:import url="/WEB-INF/view/inc/empMenu.jsp"></c:import>
 	
-	
-	
 	<form method = "post" enctype = "multipart/form-data" action = "${pageContext.request.contextPath}/emp/addGoods">
 		<table>
 			<tr>
@@ -34,14 +32,13 @@
 				</td>
 			</tr>
 			<tr>
-				<td>goodsImg</td>
+				<td>goodsImg(png / jpg / gif)</td>
 				<td>
 					<input type = "file" name = "goodsImg">
 				</td>
 			</tr>
 		</table>
+		<button type = "submit">상품등록</button>
 	</form>
-	<button type = "button">상품등록</button>
-	
 </body>
 </html>
