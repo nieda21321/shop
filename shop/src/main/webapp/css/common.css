@@ -1,0 +1,220 @@
+/* ========================================
+   🔷 COMMON.CSS - Global Design Framework
+   통일된 UI/UX를 위한 프로젝트 전역 스타일
+   ======================================== */
+
+/* -------------------------
+   🩵 기본 폰트 및 레이아웃
+-------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600&display=swap');
+
+:root {
+  /* 🎨 색상 변수 */
+  --color-bg-light: #f8fafc;
+  --color-bg-dark: #eaeef3;
+  --color-white: #ffffff;
+  --color-border: #d1d5db;
+  --color-gray: #6b7280;
+  --color-text-dark: #1e293b;
+  --color-text-light: #64748b;
+
+  /* ✅ 포인트 컬러 */
+  --color-primary: #4f46e5;
+  --color-primary-light: #6366f1;
+  --color-success: #10b981;
+  --color-danger: #f43f5e;
+  --color-warning: #facc15;
+
+  /* ⚙️ 전역 효과 */
+  --radius-base: 10px;
+  --radius-large: 14px;
+  --shadow-soft: 0 3px 10px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* -------------------------
+   🌐 기본 세팅
+-------------------------- */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: linear-gradient(135deg, var(--color-bg-light), var(--color-bg-dark));
+  color: var(--color-text-dark);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  color: var(--color-text-dark);
+  letter-spacing: -0.3px;
+}
+
+/* 중앙 정렬용 공통 클래스 */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* -------------------------
+   📦 카드 / 컨테이너
+-------------------------- */
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-soft);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 900px;
+  box-sizing: border-box;
+}
+
+/* -------------------------
+   🧾 테이블 공통 스타일
+-------------------------- */
+table {
+  width: 90%;
+  border-collapse: collapse;
+  background: var(--color-white);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+th, td {
+  text-align: center;
+  padding: 12px 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+  background: #f1f5f9;
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+tr:hover td {
+  background: #f9fafb;
+}
+
+/* -------------------------
+   🧠 버튼 기본형
+-------------------------- */
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* 색상별 버튼 */
+.btn-primary {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  color: #fff;
+}
+.btn-primary:hover {
+  background: linear-gradient(90deg, #4338ca, var(--color-primary));
+}
+
+.btn-success {
+  background: linear-gradient(90deg, #10b981, #34d399);
+  color: #fff;
+}
+.btn-success:hover {
+  background: linear-gradient(90deg, #059669, #10b981);
+}
+
+.btn-danger {
+  background: linear-gradient(90deg, #f43f5e, #fb7185);
+  color: #fff;
+}
+.btn-danger:hover {
+  background: linear-gradient(90deg, #e11d48, #f43f5e);
+}
+
+.btn-secondary {
+  background: #f3f4f6;
+  color: var(--color-text-dark);
+  border: 1px solid var(--color-border);
+}
+.btn-secondary:hover {
+  background: #e7e9ed;
+}
+
+/* -------------------------
+   ✏️ 입력 필드
+-------------------------- */
+input[type="text"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  outline: none;
+  transition: all 0.2s ease;
+  background-color: #fafafa;
+  box-sizing: border-box;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primary);
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(79, 70, 229, 0.25);
+}
+
+/* -------------------------
+   🪟 모달 / 팝업 공통
+-------------------------- */
+.modal {
+  background: var(--color-white);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-medium);
+  padding: 30px;
+  width: 420px;
+  max-width: 90%;
+  margin: 50px auto;
+}
+
+/* -------------------------
+   🧭 상단 컨트롤 / 메뉴
+-------------------------- */
+.top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-white);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-soft);
+  padding: 14px 20px;
+  margin: 20px auto;
+  max-width: 900px;
+}
+
+/* -------------------------
+   📱 반응형
+-------------------------- */
+@media (max-width: 768px) {
+  table {
+    width: 100%;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 7px 14px;
+  }
+
+  .top-controls {
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px 16px;
+  }
+}

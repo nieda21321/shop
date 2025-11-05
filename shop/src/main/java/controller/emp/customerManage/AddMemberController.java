@@ -1,4 +1,4 @@
-package controller;
+package controller.emp.customerManage;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

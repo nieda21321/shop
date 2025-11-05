@@ -17,15 +17,15 @@ h1 {
 
 /* ===== 상단 컨트롤바 ===== */
 .top-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 85%;
-    margin: 0 auto 25px auto;
-    background: #ffffff;
-    padding: 15px 25px;
-    border-radius: 14px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  max-width: 900px;
+  margin: 20px auto 25px auto;
+  padding: 14px 20px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
 
 .pagination-controls {

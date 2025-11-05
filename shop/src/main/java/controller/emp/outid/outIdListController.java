@@ -1,4 +1,4 @@
-package controller;
+package controller.emp.outid;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -30,7 +30,7 @@ public class outIdListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int currentPage = 1;
+				int currentPage = 1;
 				
 				if ( request.getParameter("currentPage") != null ) {
 					

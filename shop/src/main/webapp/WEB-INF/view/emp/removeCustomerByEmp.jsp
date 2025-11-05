@@ -54,35 +54,36 @@ $(function() {
 </script>
 <body>
 	<div class="form-container">
-        <h2>회원 탈퇴 처리</h2>
+    <h2>회원 탈퇴 처리</h2>
 
-        <form id="removeForm" method="post" action="${pageContext.request.contextPath}/emp/removeCustomerByEmp">
-           
-            <input type="hidden" name="customerId" value="${param.customerId}">
-            <input type="hidden" name="customerName" value="${param.customerName}">
+    <form id="removeForm" method="post" action="${pageContext.request.contextPath}/emp/removeCustomerByEmp">
+        <input type="hidden" name="customerId" value="${param.customerId}">
+        <input type="hidden" name="customerName" value="${param.customerName}">
 
-            <table>
-                <tr>
-                    <td>고객명</td>
-                    <td>${param.customerName}</td>
-                </tr>
-                <tr>
-                    <td>고객 아이디</td>
-                    <td>${param.customerId}</td>
-                </tr>
-                <tr>
-                    <td>탈퇴 사유</td>
-                    <td>
-                        <textarea name="memo" rows="5" placeholder="탈퇴 사유를 입력하세요.">test</textarea>
-                    </td>
-                </tr>
-            </table>
-
-            <div class="button-group">
-                <button type="button" class="btn btn-confirm" id="confirmBtn">확인</button>
-                <button type="button" class="btn btn-cancel" id="cancelBtn">취소</button>
+        <!-- 고객 정보 영역 -->
+        <div class="info-section">
+            <div class="info-row">
+                <label>고객명</label>
+                <span>${param.customerName}</span>
             </div>
-        </form>
-    </div>
+            <div class="info-row">
+                <label>고객 아이디</label>
+                <span>${param.customerId}</span>
+            </div>
+        </div>
+
+        <!-- 탈퇴 사유 입력 영역 -->
+        <div class="textarea-section">
+            <label for="memo">탈퇴 사유</label>
+            <textarea name="memo" id="memo" rows="5" placeholder="탈퇴 사유를 입력하세요."></textarea>
+        </div>
+
+        <!-- 버튼 영역 -->
+        <div class="button-group">
+            <button type="button" class="btn btn-confirm" id="confirmBtn">확인</button>
+            <button type="button" class="btn btn-cancel" id="cancelBtn">취소</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

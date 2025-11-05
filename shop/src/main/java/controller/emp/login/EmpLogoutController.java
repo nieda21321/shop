@@ -1,4 +1,4 @@
-package controller;
+package controller.emp.login;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,16 +8,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class GoodsListController
+ * 
+ * 2025. 11. 03.
+ * author - tester
+ * 사원 로그아웃 페이징
  */
-@WebServlet("/emp/goodsList")
-public class GoodsListController extends HttpServlet {
+@WebServlet("/emp/empLogout")
+public class EmpLogoutController extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.getRequestDispatcher("/WEB-INF/view/emp/goodsList.jsp").forward(request, response);
+		
+		request.getSession().invalidate();
+		response.sendRedirect(request.getContextPath() + "/home");
 	}
 }

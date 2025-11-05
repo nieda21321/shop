@@ -47,7 +47,7 @@ public class OutIdDao {
 		
 		List<Outid> outIdList = new ArrayList<Outid>();
 		
-		if (rs.next()) {
+		while (rs.next()) {
 			
 			Outid o = new Outid();
 			o.setId(rs.getString("id"));
@@ -59,7 +59,6 @@ public class OutIdDao {
 		rs.close();
 	    psmt.close();
 	    conn.close();
-		
 		return outIdList;
 	}
 	

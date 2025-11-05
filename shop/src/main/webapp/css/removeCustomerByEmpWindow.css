@@ -1,8 +1,7 @@
-<style>
 /* ✅ 전체 레이아웃 */
 body {
     font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
-    background: linear-gradient(135deg, #f8f9fb, #e9edf3);
+    background-color: #f4f6f9;
     margin: 0;
     padding: 0;
     display: flex;
@@ -11,110 +10,134 @@ body {
     height: 100vh;
 }
 
-/* ✅ 폼 컨테이너 */
+/* ✅ 팝업 컨테이너 */
 .form-container {
-    background: #ffffff;
+    background: #fff;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    padding: 30px 40px;
-    width: 400px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.1);
+    width: 420px;
+    padding: 36px 40px;
     box-sizing: border-box;
+    transition: all 0.25s ease;
 }
 
-/* ✅ 제목 */
 .form-container h2 {
     text-align: center;
-    color: #333;
-    margin-bottom: 25px;
+    color: #2f2f2f;
     font-size: 20px;
     font-weight: 600;
+    margin-bottom: 28px;
 }
 
-/* ✅ 테이블 스타일 */
-table {
-    width: 100%;
-    border-collapse: collapse;
+/* ✅ 고객 정보 영역 */
+.info-section {
+    background-color: #f8f9fb;
+    border: 1px solid #e1e4e8;
+    border-radius: 10px;
+    padding: 15px 18px;
     margin-bottom: 20px;
 }
 
-td {
-    padding: 10px 5px;
-    color: #333;
-    font-size: 14px;
-    vertical-align: top;
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e8eaef;
 }
 
-td:first-child {
-    width: 100px;
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row label {
     font-weight: 500;
     color: #555;
+    font-size: 14px;
 }
 
-/* ✅ 텍스트영역 */
-textarea {
+.info-row span {
+    color: #333;
+    font-size: 14px;
+}
+
+/* ✅ 탈퇴 사유 입력 영역 */
+.textarea-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.textarea-section label {
+    font-weight: 500;
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.textarea-section textarea {
     width: 100%;
     resize: none;
-    border: 1px solid #ddd;
+    border: 1px solid #d0d4db;
     border-radius: 10px;
     padding: 10px;
     font-size: 14px;
     box-sizing: border-box;
-    transition: all 0.2s ease;
+    background-color: #fafbfc;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-textarea:focus {
-    border-color: #7b9acc;
+.textarea-section textarea:focus {
+    border-color: #6C63FF;
+    box-shadow: 0 0 6px rgba(108, 99, 255, 0.3);
     outline: none;
-    box-shadow: 0 0 5px rgba(123, 154, 204, 0.3);
+    background-color: #fff;
 }
 
 /* ✅ 버튼 그룹 */
 .button-group {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin-top: 15px;
+    gap: 14px;
 }
 
-/* ✅ 공통 버튼 */
+/* ✅ 버튼 공통 */
 .btn {
-    padding: 10px 24px;
+    padding: 10px 26px;
     border: none;
     border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-in-out;
 }
 
 /* ✅ 확인 버튼 */
 .btn-confirm {
-    background: linear-gradient(135deg, #4f6ef7, #6b8dfc);
-    color: white;
+    background: linear-gradient(135deg, #6C63FF, #7D74FF);
+    color: #fff;
+    box-shadow: 0 3px 8px rgba(108, 99, 255, 0.25);
 }
 
 .btn-confirm:hover {
-    background: linear-gradient(135deg, #3e5fe2, #5e7df7);
+    background: linear-gradient(135deg, #5b52e9, #6d64f3);
 }
 
 /* ✅ 취소 버튼 */
 .btn-cancel {
-    background: #f1f1f1;
+    background-color: #f3f4f6;
     color: #333;
+    border: 1px solid #d1d5db;
 }
 
 .btn-cancel:hover {
-    background: #e4e4e4;
+    background-color: #e7e9ed;
 }
 
-/* ✅ 반응형 (작은 팝업 대비) */
-@media (max-width: 500px) {
+/* ✅ 반응형 */
+@media (max-width: 480px) {
     .form-container {
         width: 90%;
         padding: 25px;
     }
-    td:first-child {
-        width: 80px;
-    }
 }
-</style>

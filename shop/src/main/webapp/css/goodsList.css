@@ -1,0 +1,101 @@
+/* ✅ 페이지 컨테이너 */
+.page-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.05);
+    padding: 30px 40px;
+}
+
+/* ✅ 페이지 타이틀 */
+.page-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2f2f2f;
+    margin-bottom: 25px;
+}
+
+/* ✅ 상단 버튼 */
+.top-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 18px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6C63FF, #7D74FF);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5b52e9, #6d64f3);
+}
+
+.btn-add {
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-add:hover {
+  background: linear-gradient(90deg, #4338ca, #4f46e5);
+  transform: translateY(-1px);
+}
+
+/* ✅ 테이블 스타일 */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.styled-table th {
+    background-color: #f9fafc;
+    color: #333;
+    font-weight: 600;
+}
+
+/* ✅ hover 효과 */
+.styled-table tbody tr:hover {
+    background-color: #f5f6fb;
+}
+
+/* ✅ 상품 이미지 썸네일 */
+.goods-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+
+.goods-thumb:hover {
+    transform: scale(1.05);
+}
+
+/* ✅ 반응형 */
+@media (max-width: 768px) {
+    .styled-table th, .styled-table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
