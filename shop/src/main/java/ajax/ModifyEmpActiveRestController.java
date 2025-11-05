@@ -30,7 +30,7 @@ public class ModifyEmpActiveRestController extends HttpServlet {
 		String empCodeParam = request.getParameter("empCode");
 		String activeParam = request.getParameter("active");
 		
-		// ✅ 기본 검증
+		// 기본 검증
         if (empCodeParam == null || activeParam == null) {
             
         	response.getWriter().write("{\"result\":\"error\",\"message\":\"필수값 누락\"}");
