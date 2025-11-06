@@ -58,7 +58,7 @@
 
         <!-- 상단 컨트롤바 -->
 		<div class="top-controls">
-		    <button type="button" id="addGoodsBtn" class="btn btn-add">사원 추가</button>
+		    <button type="button" id="addGoodsBtn" class="btn btn-add">상품 등록</button>
 		
 		    <div class="pagination-controls">
 		        <button type="button" id="prevBtn" class="btn btn-page">이전</button>
@@ -77,7 +77,7 @@
                         <th>상품명</th>
                         <th>가격</th>
                         <th>남은수량</th>
-                        <th>할인율</th>
+                        <th>적립률</th>
                         <th>등록일</th>
                         <th>등록사원ID</th>
                         <th>등록사원명</th>
@@ -86,10 +86,10 @@
                 <tbody>
                     <c:forEach var="g" items="${goodsList}">
                         <tr>
-                            <td><img src="${pageContext.request.contextPath}/upload/${g.image}" alt="상품이미지" class="goods-thumb"></td>
+                            <td><img src="${pageContext.request.contextPath}/upload/${g.filename}" alt="상품이미지" class="goods-thumb"></td>
                             <td>${g.goodsCode}</td>
                             <td>${g.goodsName}</td>
-                            <td><fmt:formatNumber value="${g.goodsPrice}" pattern="#,###" />원</td>
+                            <td>${g.goodsPrice}원</td>
                             <td>${g.soldout}</td>
                             <td>${g.pointRate}%</td>
                             <td>${g.createdate}</td>

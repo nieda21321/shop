@@ -1,0 +1,122 @@
+/* ✅ 기본 설정 */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: linear-gradient(135deg, #f4f6fa, #e7ebf0);
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ 제목 */
+h1 {
+  text-align: center;
+  font-size: 28px;
+  color: #2f2f2f;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  letter-spacing: -0.5px;
+}
+
+/* ✅ 폼 영역 */
+form {
+  width: 500px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  padding: 30px 40px 40px;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+}
+
+/* ✅ 폼 내부 구조: 라인 없는 그리드형 배치 */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 18px; /* 각 행 사이 여백 */
+}
+
+td {
+  padding: 0;
+  vertical-align: middle;
+}
+
+/* ✅ 라벨(왼쪽 셀) */
+td:first-child {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 6px;
+  text-align: left;
+  letter-spacing: -0.3px;
+}
+
+/* ✅ 입력 필드 감싸는 컨테이너 느낌 */
+td:last-child {
+  display: block;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+}
+
+td:last-child:focus-within {
+  border-color: #6366f1;
+  background-color: #fff;
+  box-shadow: 0 0 6px rgba(99, 102, 241, 0.2);
+}
+
+/* ✅ 입력 요소 자체 스타일 */
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  padding: 6px 0;
+  color: #374151;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus {
+  outline: none;
+}
+
+
+/* ✅ 버튼 */
+button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px 0;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
+  transform: translateY(-1px);
+}
+
+/* ✅ 반응형 */
+@media (max-width: 480px) {
+  form {
+    width: 90%;
+    padding: 25px;
+  }
+
+  td:first-child {
+    text-align: left;
+    padding-right: 0;
+  }
+}

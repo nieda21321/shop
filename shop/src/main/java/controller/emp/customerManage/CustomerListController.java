@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import dao.CustomerDao;
-import dto.Customer;
 
 /**
  * Servlet implementation class CustomerListController

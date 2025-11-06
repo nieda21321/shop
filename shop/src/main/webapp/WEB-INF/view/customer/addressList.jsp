@@ -6,15 +6,17 @@
 <meta charset="UTF-8">
 <title>shop</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<%-- 달러표시해줘야함--%>
+<link rel="stylesheet" href="{pageContext.request.contextPath}/css/addEmp.css">
 </head>
 <body>
-	<h1>customerIndex</h1>
+	<h1>addressList</h1>
+	<%-- customer menu include --%>
 	<c:import url="/WEB-INF/view/inc/customerMenu.jsp"></c:import>
 	
 	<div>
-		${loginCustomer.customerName}님 반갑습니다.
-		(point : ${loginCustomer.point})
-		<a href = "${pageContext.request.contextPath}/customer/customerLogout">로그아웃</a>
+		<%-- 배송지 최대 5개 : 6번쨰 입력 시 가장 오래된 데이터 삭제 후 입력(트랜젝션)--%>
+		<a href = "${pageContext.request.contextPath}/customer/addAddress">배송지추가</a>
 	</div>
 </body>
 </html>
