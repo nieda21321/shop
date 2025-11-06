@@ -4,11 +4,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import dto.Address;
 
 public class AddressDao {
 	
+	/**
+	 * 2025. 11. 06.
+	 * Author - tester
+	 * 고객 - 배송지 주소 추가 기능
+	 * @param address
+	 */
 	public void insertAddress(Address address) {
 		
 		// select
@@ -39,8 +49,6 @@ public class AddressDao {
 				
 				""";
 		
-		
-		
 		try {
 			
 			conn = DBConnection.getConn();
@@ -61,8 +69,8 @@ public class AddressDao {
 			
 			// 추가
 			psmt3 = conn.prepareStatement(sql3);
-			psmt1.setInt(1, address.getCustomerCode());
-			psmt1.setString(1, address.getAddress());
+			psmt3.setInt(1, address.getCustomerCode());
+			psmt3.setString(2, address.getAddress());
 			int row = psmt3.executeUpdate();
 			
 			conn.commit();
@@ -91,15 +99,108 @@ public class AddressDao {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
-		
-		// select
-		
-		// delete
-		
-		// insert
 	}
-
+	
+	
+	/**
+	 * 
+	 * 2025. 11. 06.
+	 * Author - tester
+	 * 고객 - 배송지 주소 관리 리스트 출력
+	 * @param beginRow
+	 * @param rowPerPage
+	 * @return addressList
+	 * @throws Exception
+	 */
+	public List<Address> selectAddressList(int customerCode, int beginRow, int rowPerPage) throws Exception{
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		String sql ="""
+				SELECT
+				    address_code as addressCode,
+				    customer_code as customerCode,
+				    address,
+				    createdate
+				FROM
+				    address
+				WHERE customer_code = ?
+				ORDER BY
+				    address_code DESC
+				offset ? ROWS FETCH NEXT ? ROWS ONLY
+				""";
+		
+		conn = DBConnection.getConn();
+		psmt = conn.prepareStatement(sql);
+		psmt.setInt(1, customerCode);
+		psmt.setInt(2, beginRow);
+		psmt.setInt(3, rowPerPage);
+		
+		rs = psmt.executeQuery();
+		
+		List<Address> addressList = new ArrayList<Address>();
+		
+		while (rs.next()) {
+			
+			Address address = new Address();
+			address.setAddressCode(rs.getInt("addressCode"));
+			address.setCustomerCode(rs.getInt("customerCode"));
+			address.setAddress(rs.getString("address"));
+			address.setCreatedate(rs.getString("createdate"));
+			addressList.add(address);
+		}
+		
+		rs.close();
+	    psmt.close();
+	    conn.close();
+		
+		return addressList;
+	}
+	
+	
+	/**
+	 * 
+	 * 2025. 11. 06.
+	 * 마지막 페이징 값
+	 * 
+	 * @param rowPerPage
+	 * @return lastPage
+	 * @throws Exception
+	 */
+	public int AddressListLastPage(int rowPerPage) throws Exception{
+		
+		int lastPage = 0;
+		int allCnt = 0;
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		String sql ="""
+				SELECT COUNT(*) FROM ADDRESS 
+				""";
+		
+		conn = DBConnection.getConn();
+		psmt = conn.prepareStatement(sql);
+		
+		rs = psmt.executeQuery();
+		
+		while(rs.next()) {
+			
+			allCnt = rs.getInt("COUNT(*)");
+		}
+		
+		if ( allCnt % rowPerPage == 0 ) {
+			
+			lastPage = ( allCnt / rowPerPage );
+		} else {
+			
+			lastPage = ( allCnt / rowPerPage ) + 1;
+		}
+		
+		return lastPage;
+	}
+	
 }

@@ -5,7 +5,7 @@ public class Address {
 	private int addressCode;
 	private int customerCode;
 	private String address;
-	private String createDate;
+	private String createdate;
 	
 	public int getAddressCode() {
 		return addressCode;
@@ -25,15 +25,15 @@ public class Address {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getCreateDate() {
-		return createDate;
+	public String getCreatedate() {
+		return createdate;
 	}
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
+	public void setCreatedate(String createdate) {
+		this.createdate = createdate;
 	}
 	@Override
 	public String toString() {
 		return "Address [addressCode=" + addressCode + ", customerCode=" + customerCode + ", address=" + address
-				+ ", createDate=" + createDate + "]";
+				+ ", createdate=" + createdate + "]";
 	}
 }

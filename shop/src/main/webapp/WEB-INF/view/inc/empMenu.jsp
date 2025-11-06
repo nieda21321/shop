@@ -11,7 +11,8 @@
         <a href="${pageContext.request.contextPath}/emp/customerList">고객관리</a>
         <a href="${pageContext.request.contextPath}/emp/outIdList">탈퇴회원관리</a>
         <a href="${pageContext.request.contextPath}/emp/goodsList">상품관리</a>
-        <a href="${pageContext.request.contextPath}/emp/orderList">주문관리</a>
+        <a href="${pageContext.request.contextPath}/emp/ordersList">주문관리</a>
+        <a href="${pageContext.request.contextPath}/emp/noticeList">공지관리</a>
     </div>
 </body>
 </html>
