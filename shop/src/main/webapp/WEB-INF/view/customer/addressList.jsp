@@ -138,13 +138,10 @@ $(function() {
             $('#cancelModalBtn').trigger('click');
         }
     });
-
-    // (옵션) 폼 제출 시 기본 동작: 서버로 POST (현재는 기본 submit 유지)
-    // 만약 Ajax로 처리하려면 여기에서 preventDefault 후 $.ajax 호출로 바꾸면 됩니다.
 });
 </script>
 
-<!-- 카카오 우편 API 함수 (원본 그대로, id/name은 바뀜) -->
+<!-- 카카오 우편 API 함수 -->
 <script>
 function sample4_execDaumPostcode() {
     new daum.Postcode({

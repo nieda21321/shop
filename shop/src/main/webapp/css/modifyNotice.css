@@ -1,0 +1,92 @@
+.notice-edit-container {
+    width: 70%;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    padding: 40px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.notice-edit-container h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333;
+}
+
+.notice-edit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.notice-edit-table th {
+    width: 20%;
+    background: #f9fafb;
+    padding: 14px;
+    text-align: left;
+    color: #555;
+    font-weight: 500;
+    border-bottom: 1px solid #eee;
+}
+
+.notice-edit-table td {
+    padding: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.notice-edit-table input[type="text"],
+.notice-edit-table textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.notice-edit-table input[readonly],
+.notice-edit-table textarea[readonly] {
+    background: #f9f9f9;
+    color: #666;
+}
+
+.notice-edit-table textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+.btn-area {
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 22px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin: 0 6px;
+    transition: 0.2s ease;
+}
+
+.btn-save {
+    background: #007bff;
+    color: #fff;
+}
+
+.btn-save:hover {
+    background: #0067d9;
+}
+
+.btn-cancel {
+    background: #e0e0e0;
+}
+
+.btn-cancel:hover {
+    background: #c9c9c9;
+}
