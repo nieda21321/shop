@@ -16,7 +16,7 @@ import dto.Outid;
 /**
  * Servlet implementation class outIdListController
  */
-@WebServlet("/emp/outIdList")
+@WebServlet("/emp/outId/outIdList")
 public class outIdListController extends HttpServlet {
        
 	
@@ -58,7 +58,7 @@ public class outIdListController extends HttpServlet {
 				request.setAttribute("lastPage", lastPage);
 				request.setAttribute("outIdList", outIdList);
 				
-				request.getRequestDispatcher("/WEB-INF/view/emp/outIdList.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/view/emp/outId/outIdList.jsp").forward(request, response);
 	}
 
 	/**

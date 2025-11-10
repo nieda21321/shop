@@ -16,7 +16,7 @@ import dto.Outid;
 /**
  * 
  */
-@WebServlet("/emp/removeCustomerByEmp")
+@WebServlet("/emp/customer/removeCustomerByEmp")
 public class RemoveCustomerByEmpController extends HttpServlet {
 
 	private CustomerDao customerDao;
@@ -29,7 +29,7 @@ public class RemoveCustomerByEmpController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("/WEB-INF/view/emp/removeCustomerByEmp.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/emp/customer/removeCustomerByEmp.jsp").forward(request, response);
 	}
 
 }

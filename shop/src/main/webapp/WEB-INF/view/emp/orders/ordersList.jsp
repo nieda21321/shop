@@ -17,7 +17,7 @@ $(function(){
     $('#prevBtn').on('click', function() {
         let currentPage = parseInt('${currentPage}');
         if (currentPage > 1) {
-            location.href = '${pageContext.request.contextPath}/emp/orderList?currentPage=' + (currentPage - 1);
+            location.href = '${pageContext.request.contextPath}/emp/orders/ordersList?currentPage=' + (currentPage - 1);
         } else {
             alert('첫 페이지입니다.');
         }
@@ -27,7 +27,7 @@ $(function(){
         let currentPage = parseInt('${currentPage}');
         let lastPage = parseInt('${lastPage}');
         if (currentPage < lastPage) {
-            location.href = '${pageContext.request.contextPath}/emp/orderList?currentPage=' + (currentPage + 1);
+            location.href = '${pageContext.request.contextPath}/emp/orders/orderList?currentPage=' + (currentPage + 1);
         } else {
             alert('마지막 페이지입니다.');
         }

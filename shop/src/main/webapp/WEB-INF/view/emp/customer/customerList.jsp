@@ -18,7 +18,7 @@ $(function() {
        
         if (currentPage > 1) {
           
-        	location.href = '${pageContext.request.contextPath}/emp/customerList?currentPage=' + (currentPage - 1);
+        	location.href = '${pageContext.request.contextPath}/emp/customer/customerList?currentPage=' + (currentPage - 1);
         } else {
            
         	alert("첫 페이지입니다.");
@@ -34,7 +34,7 @@ $(function() {
         
     	if (currentPage < lastPage) {
            
-    		location.href = '${pageContext.request.contextPath}/emp/customerList?currentPage=' + (currentPage + 1);
+    		location.href = '${pageContext.request.contextPath}/emp/customer/customerList?currentPage=' + (currentPage + 1);
         } else {
            
         	alert("마지막 페이지입니다.");
@@ -55,13 +55,13 @@ $(function() {
  	// 고객 주문내역 확인
     window.viewCustomerOrder = function(customerCode) {
 
-        location.href = '${pageContext.request.contextPath}/emp/customerOrderListByEmp?customerCode=' + encodeURIComponent(customerCode);
+        location.href = '${pageContext.request.contextPath}/emp/customer/customerOrderListByEmp?customerCode=' + encodeURIComponent(customerCode);
     };
 
     // 고객 회원탈퇴 처리 팝업창
     window.openRemovePopup = function(customerId, customerName) {
 
-        let popupUrl = '${pageContext.request.contextPath}/emp/removeCustomerByEmp'
+        let popupUrl = '${pageContext.request.contextPath}/emp/customer/removeCustomerByEmp'
             + '?customerId=' + encodeURIComponent(customerId)
             + '&customerName=' + encodeURIComponent(customerName);
         let popupName = "removeCustomer";

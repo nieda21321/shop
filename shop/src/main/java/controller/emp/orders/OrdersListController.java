@@ -1,4 +1,4 @@
-package controller.emp.orderManage;
+package controller.emp.orders;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,7 +14,7 @@ import dao.OrdersDao;
 /**
  * Servlet implementation class OrdersListController
  */
-@WebServlet("/emp/ordersList")
+@WebServlet("/emp/orders/ordersList")
 public class OrdersListController extends HttpServlet {
        
 	private OrdersDao ordersDao;
@@ -54,7 +54,7 @@ public class OrdersListController extends HttpServlet {
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("lastPage", lastPage);
 		request.setAttribute("ordersList", ordersList);
-		request.getRequestDispatcher("/WEB-INF/view/emp/ordersList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/emp/orders/ordersList.jsp").forward(request, response);
 	}
 
 	/**

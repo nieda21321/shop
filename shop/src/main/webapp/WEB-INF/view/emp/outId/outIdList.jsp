@@ -18,7 +18,7 @@ $(function() {
        
         if (currentPage > 1) {
           
-        	location.href = '${pageContext.request.contextPath}/emp/empList?currentPage=' + (currentPage - 1);
+        	location.href = '${pageContext.request.contextPath}/emp/outId/outIdList?currentPage=' + (currentPage - 1);
         } else {
            
         	alert("첫 페이지입니다.");
@@ -34,7 +34,7 @@ $(function() {
         
     	if (currentPage < lastPage) {
            
-    		location.href = '${pageContext.request.contextPath}/emp/empList?currentPage=' + (currentPage + 1);
+    		location.href = '${pageContext.request.contextPath}/emp/outId/outIdList?currentPage=' + (currentPage + 1);
         } else {
            
         	alert("마지막 페이지입니다.");

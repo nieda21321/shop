@@ -23,7 +23,7 @@ $(function() {
         if (confirm("정말로 이 고객을 탈퇴 처리하시겠습니까?")) {
 
         	$.ajax({
-        	    url: '${pageContext.request.contextPath}/emp/removeCustomerByEmpAjax',
+        	    url: '${pageContext.request.contextPath}/emp/customer/removeCustomerByEmpAjax',
         	    type: 'POST',
         	    data: $('#removeForm').serialize(),
         	    dataType: 'json',
@@ -56,7 +56,7 @@ $(function() {
 	<div class="form-container">
     <h2>회원 탈퇴 처리</h2>
 
-    <form id="removeForm" method="post" action="${pageContext.request.contextPath}/emp/removeCustomerByEmp">
+    <form id="removeForm" method="post" action="${pageContext.request.contextPath}/emp/customer/removeCustomerByEmp">
         <input type="hidden" name="customerId" value="${param.customerId}">
         <input type="hidden" name="customerName" value="${param.customerName}">
 

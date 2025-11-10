@@ -15,7 +15,7 @@ import dao.GoodsDao;
 /**
  * Servlet implementation class GoodsListController
  */
-@WebServlet("/emp/goodsList")
+@WebServlet("/emp/goods/goodsList")
 public class GoodsListController extends HttpServlet {
 
 	
@@ -57,6 +57,6 @@ public class GoodsListController extends HttpServlet {
 		request.setAttribute("lastPage", lastPage);
 		request.setAttribute("goodsList", goodsList);
 		
-		request.getRequestDispatcher("/WEB-INF/view/emp/goodsList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/emp/goods/goodsList.jsp").forward(request, response);
 	}
 }

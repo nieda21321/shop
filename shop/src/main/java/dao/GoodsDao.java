@@ -15,7 +15,147 @@ import dto.GoodsImg;
 public class GoodsDao {
 	
 	
-	// 상품등록 + 이미지 등록
+	public List<Map<String,Object>> selectCustomerBestGoodsList() {
+		
+		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+		Connection conn = null;
+		PreparedStatement psmt = null; 
+		ResultSet rs = null;
+		String sql = """
+				
+				SELECT
+					    gi.filename   AS filename,
+					    g.goods_code  AS goodscode,
+					    g.goods_name  AS goodsname,
+					    g.goods_price AS goodsprice
+					FROM
+					         goods g
+					    INNER JOIN goods_img gi ON g.goods_code = gi.goods_code
+					    INNER JOIN (
+					        SELECT
+					            goods_code,
+					            COUNT(*)
+					        FROM
+					            orders
+					        GROUP BY
+					            goods_code
+					        ORDER BY
+					            COUNT(*) DESC
+					        OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY
+					    )         t ON g.goods_code = t.goods_code;
+				
+				""";
+		
+		try {
+			
+			conn = DBConnection.getConn();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("filename", rs.getString("filename"));
+				m.put("goodsCode", rs.getString("goodsCode"));
+				m.put("goodsName", rs.getString("goodsName"));
+				m.put("goodsPrice", rs.getInt("goodsPrice"));
+				list.add(m);
+			}
+			
+		} catch (Exception e) {
+			
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				
+				if(rs != null) rs.close();
+				if(psmt != null) psmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				
+				e2.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
+	
+	
+		/**
+		 * 
+		 * 2025. 11. 10.
+		 * Author - tester
+		 * 사용자 로그인 상품목록 리스트
+		 * @param beginRow
+		 * @param rowPerPage
+		 * @return
+		 */
+		public List<Map<String,Object>> selectCustomerGoodsList(int beginRow, int rowPerPage) {
+			
+			List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+			Connection conn = null;
+			PreparedStatement psmt = null; 
+			ResultSet rs = null;
+			String sql = """
+					
+					select 
+						gi.filename as filename,
+						g.goods_code as goodsCode,
+						g.goods_name as goodsName,
+						g.goods_price as goodsPrice
+					from goods g inner join goods_img gi
+					on g.goods_code = gi.goods_code
+					where g.soldout is null
+					order by g.goods_code desc
+					offset ? rows fetch next ? rows only
+					
+					""";
+			
+			try {
+				
+				conn = DBConnection.getConn();
+				psmt = conn.prepareStatement(sql);
+				psmt.setInt(1, beginRow);
+				psmt.setInt(2, rowPerPage);
+				rs = psmt.executeQuery();
+				while(rs.next()) {
+					
+					Map<String, Object> m = new HashMap<String, Object>();
+					m.put("filename", rs.getString("filename"));
+					m.put("goodsCode", rs.getString("goodsCode"));
+					m.put("goodsName", rs.getString("goodsName"));
+					m.put("goodsPrice", rs.getInt("goodsPrice"));
+					list.add(m);
+				}
+				
+			} catch (Exception e) {
+				
+			} finally {
+				
+				try {
+					
+					if(rs != null) rs.close();
+					if(psmt != null) psmt.close();
+					if(conn != null) conn.close();
+				} catch (Exception e2) {
+					
+					e2.printStackTrace();
+				}
+			}
+			
+			return list;
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+		// 상품등록 + 이미지 등록
 		// 반환값은 실패시 false
 		public boolean insertGoodsAndImg(Goods goods, GoodsImg img) {
 			boolean result = false;

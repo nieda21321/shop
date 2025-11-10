@@ -24,7 +24,7 @@ import dto.GoodsImg;
 /**
  * Servlet implementation class AddGoodsController
  */
-@WebServlet("/emp/addGoods")
+@WebServlet("/emp/goods/addGoods")
 public class AddGoodsController extends HttpServlet {
        
 	
@@ -39,7 +39,7 @@ public class AddGoodsController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/WEB-INF/view/emp/addGoods.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/emp/goods/addGoods.jsp").forward(request, response);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class AddGoodsController extends HttpServlet {
 		
 		if(!(contentType.equals("image/png") || contentType.equals("image/jpeg") || contentType.equals("image/gif"))) {
 			System.out.println("png, jpg, gif 파일만 허용");
-			response.sendRedirect(request.getContextPath() + "/emp/addGoods");
+			response.sendRedirect(request.getContextPath() + "/emp/goods/addGoods");
 			return;
 		}
 		
@@ -110,10 +110,10 @@ public class AddGoodsController extends HttpServlet {
 			if(saveFile.exists()) {
 				saveFile.delete();
 			}
-			response.sendRedirect(request.getContextPath()+"/emp/addGoods");
+			response.sendRedirect(request.getContextPath()+"/emp/goods/addGoods");
 			return;
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/emp/goodsList");
+		response.sendRedirect(request.getContextPath()+"/emp/goods/goodsList");
 	}
 }

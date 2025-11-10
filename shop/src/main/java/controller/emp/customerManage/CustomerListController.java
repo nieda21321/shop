@@ -14,7 +14,7 @@ import dao.CustomerDao;
 /**
  * Servlet implementation class CustomerListController
  */
-@WebServlet("/emp/customerList")
+@WebServlet("/emp/customer/customerList")
 public class CustomerListController extends HttpServlet {
        
 	private CustomerDao customerDao;
@@ -57,7 +57,7 @@ public class CustomerListController extends HttpServlet {
 		request.setAttribute("lastPage", lastPage);
 		request.setAttribute("customerList", customerList);
 		
-		request.getRequestDispatcher("/WEB-INF/view/emp/customerList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/emp/customer/customerList.jsp").forward(request, response);
 	}
 
 	/**

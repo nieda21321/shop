@@ -16,7 +16,7 @@
         $('#addGoodsBtn').on('click', function() {
 
             const ctx = '${pageContext.request.contextPath}';
-            window.location.href = ctx + '/emp/addGoods';
+            window.location.href = ctx + '/emp/goods/addGoods';
         });
         
      // ✅ 이전 페이지 이동
@@ -26,7 +26,7 @@
            
             if (currentPage > 1) {
               
-            	location.href = '${pageContext.request.contextPath}/emp/empList?currentPage=' + (currentPage - 1);
+            	location.href = '${pageContext.request.contextPath}/emp/goods/goodsList?currentPage=' + (currentPage - 1);
             } else {
                
             	alert("첫 페이지입니다.");
@@ -42,7 +42,7 @@
             
         	if (currentPage < lastPage) {
                
-        		location.href = '${pageContext.request.contextPath}/emp/empList?currentPage=' + (currentPage + 1);
+        		location.href = '${pageContext.request.contextPath}/emp/goods/goodsList?currentPage=' + (currentPage + 1);
             } else {
                
             	alert("마지막 페이지입니다.");

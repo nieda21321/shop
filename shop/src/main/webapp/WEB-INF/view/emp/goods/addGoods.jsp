@@ -43,7 +43,7 @@ $(function() {
 	<h1>상품 등록</h1>
 	<c:import url="/WEB-INF/view/inc/empMenu.jsp"></c:import>
 	
-	<form enctype="multipart/form-data" action="${pageContext.request.contextPath}/emp/addGoods" method="post">
+	<form enctype="multipart/form-data" action="${pageContext.request.contextPath}/emp/goods/addGoods" method="post">
 		<table>
 			<tr>
 				<td>상품명</td>
