@@ -1,4 +1,4 @@
-package controller;
+package controller.customer.index;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -6,6 +6,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import dao.GoodsDao;
 
@@ -21,7 +24,7 @@ public class CustomerIndexController extends HttpServlet {
 	/**
 	 * 2025. 11. 04.
 	 * author - tester
-	 * 고객 상단 인덱스
+	 * 고객로그인 - 메인페이지
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -33,23 +36,41 @@ public class CustomerIndexController extends HttpServlet {
 		}
 		
 		int rowPerPage = 20;
-		int beginRow = ( 1 - currentPage ) * rowPerPage;
-		int lastPage = 0;
-		int startPage = 0;
-		int endPage = 0;
+		int beginRow = ( currentPage - 1 ) * rowPerPage;
+		
 		
 		goodsDao = new GoodsDao();
-		request.setAttribute("customerGoodsList", goodsDao.selectCustomerGoodsList(beginRow, rowPerPage));
+		List<Map<String,Object>> customerGoodsList = new ArrayList<Map<String,Object>>();
+		List<Map<String,Object>> customerBestGoodsList = new ArrayList<Map<String,Object>>();
+		int lastPage = 0;
+		
+		try {
+			
+		    customerGoodsList = goodsDao.selectCustomerGoodsList(beginRow, rowPerPage);
+		    customerBestGoodsList = goodsDao.selectCustomerBestGoodsList();
+			lastPage = goodsDao.customerGoodsListLastPage(rowPerPage);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		// 하단 페이징
+		int pagePerpage = 10;
+		
+		int startPage = (( currentPage -1 ) / pagePerpage * pagePerpage ) + 1;
+		int endPage = startPage + 9;
+		
+		if ( lastPage < endPage ) {
+			
+			endPage = lastPage;
+		}
+		
+		request.setAttribute("customerGoodsList", customerGoodsList);
+		request.setAttribute("customerBestGoodsList", customerBestGoodsList);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("lastPage", lastPage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-		
-		
-		int totalTd = 20;
-		// 페이지 ( 첫번째 or 마지막) 에 출력할 상품이 7개다 -> totalTd = 10
-		
-		request.setAttribute("totalTd", totalTd);
 		
 		request.getRequestDispatcher("/WEB-INF/view/customer/customerIndex.jsp").forward(request, response);
 	}

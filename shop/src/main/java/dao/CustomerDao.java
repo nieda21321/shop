@@ -14,12 +14,386 @@ import dto.Outid;
 
 public class CustomerDao {
 	
+	/**
+	 * 
+	 * 2025. 11. 10.
+	 * Author - tester
+	 * 고객로그인 - 메인 페이지 - 개인정보관리
+	 * @param customerCode
+	 * @return list
+	 */
+	public List<Map<String, Object>> selectCustomerInfoList(int customerCode) {
+		
+		
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		String sql = """
+				SELECT
+					c.customer_code AS customerCode,
+					c.customer_id AS customerId,
+					c.customer_pw AS customerPw,
+					c.customer_name AS customerName,
+					a.ADDRESS AS address,
+					c.customer_phone AS customerPhone,
+					c.createdate
+				FROM
+					customer c
+				INNER JOIN ADDRESS a
+					ON
+					c.CUSTOMER_CODE = a.CUSTOMER_CODE
+				WHERE
+					c.customer_code = ?
+				""";
+		
+		try {
+			
+			conn = DBConnection.getConn();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, customerCode);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("customerCode", rs.getInt("customerCode"));
+				m.put("customerId", rs.getString("customerId"));
+				m.put("customerPw", rs.getString("customerPw"));
+				m.put("customerName", rs.getString("customerName"));
+				m.put("address", rs.getString("address"));
+				m.put("customerPhone", rs.getString("customerPhone"));
+				m.put("createdate", rs.getString("createdate"));
+				list.add(m);
+			}
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			
+			try {
+
+				if (rs != null) rs.close();
+		        if (psmt != null) psmt.close();
+		        if (conn != null) conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
+	
+	
+	/**
+	 * 
+	 * 2025. 11. 10.
+	 * Author - tester
+	 * 고객 로그인 - 메인 페이지 - 개인정보관리
+	 * @param customerCode
+	 * @param customerPw
+	 * @return userChk
+	 */
+	public String customerInfoAccessValidate(int customerCode, String customerPw) {
+		
+		String userChk = "";
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		String sql = """
+				
+					SELECT
+						c.customer_pw AS customerPw
+					FROM
+						customer c
+					INNER JOIN ADDRESS a
+						ON
+						c.CUSTOMER_CODE = a.CUSTOMER_CODE
+					WHERE
+						c.customer_code = ?
+						and	c.customer_pw = ?
+				""";
+		try {
+			
+			conn = DBConnection.getConn();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, customerCode);
+			psmt.setString(2, customerPw);
+			
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				
+				userChk = rs.getString("customerPw");
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				
+				if (rs != null) rs.close();
+		        if (psmt != null) psmt.close();
+		        if (conn != null) conn.close();
+			} catch (Exception e2) {
+				
+				e2.printStackTrace();
+			}
+		}
+		
+		return userChk;
+	}
+	
+	
+	/**
+	 * 
+	 * 2025. 11. 10.
+	 * Author - tester
+	 * 고객 로그인 - 메인페이지 - 개인정보변경 처리 기능
+	 * @param customerCode
+	 * @param customerPw
+	 * @param modifyCustomerInfo
+	 * @return row3
+	 */
+	public int updateCustomerInfo(int customerCode, String customerPw, Map<String, String> modifyCustomerInfo) {
+		
+		Connection conn = null;
+		PreparedStatement pwHistoryInsertPsmt = null;
+		PreparedStatement customerUpdatePsmt = null;
+		PreparedStatement addressUpdatePsmt = null;
+		int row1 = 0;
+		int row2 = 0;
+		int row3 = 0;
+		
+		String modifyPw = modifyCustomerInfo.get("customerPwChg");
+		
+		String pwHistoryInsertSql = """
+				INSERT
+					INTO
+					PW_HISTORY ( customer_code,
+					pw,
+					CREATEDATE )
+				VALUES ( ?,
+				?,
+				sysdate)
+				""";
+		
+		String customerUpdateSql ="""
+				
+				UPDATE customer
+				set
+				customer_pw = ?,
+				customer_phone = ?,
+				createdate = sysdate
+				WHERE
+				CUSTOMER_CODE = ?
+				AND CUSTOMER_PW = ?
+				
+				""";
+		
+		String addressUpdateSql = """
+				
+				UPDATE ADDRESS
+				SET
+				ADDRESS = ?,
+				createdate = sysdate
+				WHERE customer_code = ?
+				
+				""";
+		
+		try {
+			
+			conn = DBConnection.getConn();
+			conn.setAutoCommit(false);
+			
+			if ( !(customerPw.equals(modifyPw)) ) {
+				
+				pwHistoryInsertPsmt = conn.prepareStatement(pwHistoryInsertSql);
+				pwHistoryInsertPsmt.setInt(1, customerCode);
+				pwHistoryInsertPsmt.setString(2, customerPw);
+				
+				row1 = pwHistoryInsertPsmt.executeUpdate();
+			} else {
+				
+				row1 = 1;
+			}
+			
+			if ( row1 == 1 ) {
+				
+				customerUpdatePsmt = conn.prepareStatement(customerUpdateSql);
+				customerUpdatePsmt.setString(1, modifyCustomerInfo.get("customerPwChg"));
+				customerUpdatePsmt.setString(2, modifyCustomerInfo.get("customerPhoneChg"));
+				customerUpdatePsmt.setInt(3, customerCode);
+				customerUpdatePsmt.setString(4, customerPw);
+				
+				row2 = customerUpdatePsmt.executeUpdate();
+				
+				if ( row2 == 1) {
+					
+					addressUpdatePsmt = conn.prepareStatement(addressUpdateSql);
+					addressUpdatePsmt.setString(1, modifyCustomerInfo.get("customerAddressChg"));
+					addressUpdatePsmt.setInt(2, customerCode);
+					
+					row3 = addressUpdatePsmt.executeUpdate();
+					conn.commit();
+				} else {
+					
+					System.out.println("customerUpdatePsmt FAILED");
+				}
+				
+			} else {
+				
+				System.out.println("pwHistoryInsert FAILED");
+			}
+			
+			
+		} catch (Exception e) {
+
+			try {
+				
+				conn.rollback();
+			} catch (SQLException e1) {
+				
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				
+				if ( addressUpdatePsmt != null ) {
+					
+					addressUpdatePsmt.close();
+				}
+				if ( customerUpdatePsmt != null ) {
+					
+					customerUpdatePsmt.close();
+				}
+				if ( pwHistoryInsertPsmt != null ) {
+					
+					pwHistoryInsertPsmt.close();
+				}
+				if ( conn != null ) {
+					
+					conn.close();
+				}
+			} catch (Exception e2) {
+				
+				e2.printStackTrace();
+			}
+		}
+		
+		return row3;
+	}
+	
+	
+	/**
+	 * 
+	 * 2025. 11. 10.
+	 * Author - tester
+	 * 고객로그인 - 메인페이지 - 개인정보 - 회원탈퇴 기능
+	 * @param customerCode
+	 * @param customerPw
+	 * @param oi
+	 * @return
+	 */
+	public int removeCustomerByCustomer(int customerCode, String customerPw, Outid oi) {
+		
+		Connection conn = null;
+		PreparedStatement insertOutIdPsmt = null;
+		PreparedStatement removeCustomerPsmt = null;
+		int row = 0;
+		int row2 = 0;
+		
+		String insertOutIdSql = """
+				
+				insert into outid(id, memo, createdate)
+				values (?, ?, sysdate)
+				""";
+		
+		String removeCustomerSql = """
+				
+				delete from customer where customer_code = ? and customer_pw = ?
+				""";
+		// JDBC Connection의 기본 Commit 설정 값 auto commit = true;
+		// 해당 값을 false 로 변경 후 transaction 적용
+		try {
+			
+			conn = DBConnection.getConn();
+			
+			// 개발자가 commit / rollback 직접 구현 필요
+			conn.setAutoCommit(false);
+			
+			insertOutIdPsmt = conn.prepareStatement(insertOutIdSql);
+			insertOutIdPsmt.setString(1, oi.getId());
+			insertOutIdPsmt.setString(2, oi.getMemo());
+			row = insertOutIdPsmt.executeUpdate();
+			
+			if (row == 1) {
+				
+				System.out.println("INSERT OUTID SUCCESS");
+				removeCustomerPsmt = conn.prepareStatement(removeCustomerSql);
+				removeCustomerPsmt.setInt(1, customerCode);
+				removeCustomerPsmt.setString(2, customerPw);
+				
+				row2 = removeCustomerPsmt.executeUpdate();
+				
+				if ( row2 == 1 ) {
+					
+					System.out.println("REMOVE CUSTOMER SUCCESS");
+				} else {
+					
+					System.out.println("REMOVE CUSTOMER FAILED");
+				}
+			} else {
+				
+				System.out.println("INSERT OUTID FAILED");
+				throw new SQLException();
+			}
+			
+			conn.commit();
+		} catch (SQLException e) {
+			
+			try {
+				
+				System.out.println("removeCustomerByEmp SQL ROLLBACK");
+				conn.rollback();
+			} catch (SQLException e1) {
+				
+				System.out.println("removeCustomerByEmp SQL ERR");
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				
+				removeCustomerPsmt.close();
+				insertOutIdPsmt.close();
+				conn.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+		}
+		
+		System.out.println("row22 : " + row2);
+		return row2;
+	}
+	
 	
 	/**
 	 * 
 	 * 2025. 11. 05.
 	 * Author - tester
-	 * 고객 계정 탈퇴 처리 기능
+	 * 관리자 - 고객 계정 탈퇴 처리 기능
 	 * @param oi
 	 */
 	public int removeCustomerByEmp(Outid oi) {

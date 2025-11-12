@@ -15,6 +15,80 @@ import dto.GoodsImg;
 public class GoodsDao {
 	
 	
+	public Map<String, Object> selectGoodsOne(int goodsCode) {
+		
+		Map<String,Object> goodsOneMap = new HashMap<String, Object>();
+		Connection conn = null;
+		PreparedStatement psmt = null; 
+		ResultSet rs = null;
+		String sql = """
+				
+				SELECT
+					    gi.filename   AS filename,
+					    g.goods_code  AS goodscode,
+					    g.goods_name  AS goodsname,
+					    g.goods_price AS goodsprice,
+					    NVL(g.soldout,' ') AS soldout,
+					    g.point_rate AS pointRate
+					FROM
+					goods g inner join goods_img gi
+					on g.goods_code = gi.goods_code
+					where g.goods_code = ?
+				
+				""";
+		
+		try {
+			
+			conn = DBConnection.getConn();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, goodsCode);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				goodsOneMap.put("filename", rs.getString("filename"));
+				goodsOneMap.put("goodsCode", rs.getString("goodsCode"));
+				goodsOneMap.put("goodsName", rs.getString("goodsName"));
+				goodsOneMap.put("goodsPrice", rs.getInt("goodsPrice"));
+				goodsOneMap.put("soldout", rs.getString("soldout"));
+				goodsOneMap.put("pointRate", rs.getDouble("pointRate"));
+			}
+			
+		} catch (Exception e) {
+			
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				
+				if(rs != null) rs.close();
+				if(psmt != null) psmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				
+				e2.printStackTrace();
+			}
+		}
+		
+		return goodsOneMap;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 2025. 11. 10.
+	 * Author - tester
+	 * 고객 로그인 - 메인 페이지 - 상단 상품베스트 5개 목록
+	 * @return list
+	 */
 	public List<Map<String,Object>> selectCustomerBestGoodsList() {
 		
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
@@ -42,7 +116,7 @@ public class GoodsDao {
 					        ORDER BY
 					            COUNT(*) DESC
 					        OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY
-					    )         t ON g.goods_code = t.goods_code;
+					    )         t ON g.goods_code = t.goods_code
 				
 				""";
 		
@@ -87,10 +161,10 @@ public class GoodsDao {
 		 * 
 		 * 2025. 11. 10.
 		 * Author - tester
-		 * 사용자 로그인 상품목록 리스트
+		 * 고객 로그인 - 메인 페이지 - 상품목록 리스트
 		 * @param beginRow
 		 * @param rowPerPage
-		 * @return
+		 * @return list
 		 */
 		public List<Map<String,Object>> selectCustomerGoodsList(int beginRow, int rowPerPage) {
 			
@@ -147,9 +221,65 @@ public class GoodsDao {
 			
 			return list;
 		}
-	
-	
-	
+		
+		/**
+		 * 
+		 * 2025. 11. 10.
+		 * Author - tester
+		 * 고객 로그인 - 메인 페이지 - 상품목록 리스트 마지막 페이징 값
+		 * @param rowPerPage
+		 * @return lastPage
+		 * @throws Exception
+		 */
+		public int customerGoodsListLastPage(int rowPerPage) throws Exception{
+			
+			int lastPage = 0;
+			int allCnt = 0;
+			
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			ResultSet rs = null;
+			
+			String sql ="""
+					SELECT
+						COUNT(*)
+					FROM
+						(
+						SELECT 
+											gi.filename AS filename,
+											g.goods_code AS goodsCode,
+											g.goods_name AS goodsName,
+											g.goods_price AS goodsPrice
+						FROM
+							goods g
+						INNER JOIN goods_img gi
+										ON
+							g.goods_code = gi.goods_code
+						WHERE
+							g.soldout IS NULL
+					)
+					""";
+			
+			conn = DBConnection.getConn();
+			psmt = conn.prepareStatement(sql);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				allCnt = rs.getInt("COUNT(*)");
+			}
+			
+			if ( allCnt % rowPerPage == 0 ) {
+				
+				lastPage = ( allCnt / rowPerPage );
+			} else {
+				
+				lastPage = ( allCnt / rowPerPage ) + 1;
+			}
+			
+			return lastPage;
+		}
 	
 	
 	

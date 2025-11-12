@@ -169,7 +169,7 @@ public class AddressDao {
 	 * @return lastPage
 	 * @throws Exception
 	 */
-	public int AddressListLastPage(int rowPerPage) throws Exception{
+	public int AddressListLastPage(int customerCode, int rowPerPage) throws Exception{
 		
 		int lastPage = 0;
 		int allCnt = 0;
@@ -179,11 +179,13 @@ public class AddressDao {
 		ResultSet rs = null;
 		
 		String sql ="""
-				SELECT COUNT(*) FROM ADDRESS 
+				SELECT COUNT(*) FROM ADDRESS
+				WHERE customer_code = ? 
 				""";
 		
 		conn = DBConnection.getConn();
 		psmt = conn.prepareStatement(sql);
+		psmt.setInt(1, customerCode);
 		
 		rs = psmt.executeQuery();
 		

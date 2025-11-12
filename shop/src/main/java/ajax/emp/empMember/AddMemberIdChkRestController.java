@@ -1,4 +1,4 @@
-package ajax;
+package ajax.emp.empMember;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

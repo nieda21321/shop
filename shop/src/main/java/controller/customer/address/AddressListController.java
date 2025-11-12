@@ -1,4 +1,4 @@
-package controller.customer;
+package controller.customer.address;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -57,7 +57,7 @@ public class AddressListController extends HttpServlet {
 		try {
 			
 			addressList = addressDao.selectAddressList(paramCusCode, beginRow, rowPerPage); 
-			lastPage = addressDao.AddressListLastPage(rowPerPage);
+			lastPage = addressDao.AddressListLastPage(paramCusCode, rowPerPage);
 		} catch (Exception e) {
 			
 			e.printStackTrace();

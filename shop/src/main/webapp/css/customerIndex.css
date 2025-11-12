@@ -1,0 +1,156 @@
+/* 기본 설정 */
+body {
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* 인사 영역 */
+.welcome-section {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(90deg, #fdfbfb, #ebedee);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.welcome-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.welcome-box p {
+    font-size: 1rem;
+    color: #666;
+}
+.logout-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #ff4d4d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* 섹션 타이틀 */
+section h2 {
+    text-align: center;
+    margin: 2rem 0 1rem;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+/* 상품 섹션 (테이블 버전: 5개씩 4줄) */
+.goods-section {
+    text-align: center;
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+
+.goods-table-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.goods-table {
+    border-collapse: separate;
+    border-spacing: 20px 25px; /* 가로, 세로 간격 */
+}
+
+.goods-cell {
+    width: 200px;
+    vertical-align: top;
+}
+
+.goods-box {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.goods-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+}
+
+.goods-img img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
+.goods-info {
+    padding: 10px;
+}
+
+.goods-name {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #333;
+}
+
+.goods-price {
+    font-size: 0.95rem;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* 기존 그리드 버전 (베스트 상품 등에서 사용 가능) */
+.goods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem 3rem;
+}
+.goods-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    text-align: center;
+    padding: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.goods-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.goods-card img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+.goods-card h3 {
+    font-size: 1rem;
+    margin: 0.5rem 0 0.3rem;
+}
+.goods-card .price {
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* 페이지네이션 */
+.pagination-controls {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.btn-page, .page-current {
+    margin: 0 4px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.btn-page:hover {
+    background-color: #007bff;
+    color: white;
+}
+.page-current {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
