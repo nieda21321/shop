@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class StatsController
  */
-@WebServlet("/StatsController")
+@WebServlet("/emp/stats/statsList")
 public class StatsController extends HttpServlet {
        
 	/**
@@ -21,7 +21,7 @@ public class StatsController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("/WEB-INF/view/emp/stats.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/emp/stats/statsList.jsp").forward(request, response);
 	}
 
 	/**

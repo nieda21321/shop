@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,15 +17,24 @@ import com.google.gson.Gson;
 import dao.StatsDao;
 
 /**
- * Servlet implementation class OrderRestController
+ * Servlet implementation class TotalOrderAndPriceRestController
  */
-@WebServlet("/emp/status/order")
-public class OrderRestController extends HttpServlet {
+@WebServlet("/emp/stats/orderReviewAvgGoodsRank")
+public class SelectOrderReviewAvgGoodsRankRestController extends HttpServlet {
+
 	
 	private StatsDao statsDao;
-
+	
+	
+	/**
+	 * 
+	 * 2025. 11. 12.
+	 * Author - tester
+	 * 관리자 - 통계관리
+	 * 상품별 평균 리뷰 평점 1위 ~ 10위 : 막대 차트
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		
 		String fromYM = request.getParameter("fromYM");
 		String toYM = request.getParameter("toYM");
@@ -35,7 +45,7 @@ public class OrderRestController extends HttpServlet {
 		List<Map<String, Object>> orderList = new ArrayList<Map<String,Object>>();
 		//List<Map<String, Object>> priceList = new ArrayList<Map<String,Object>>();
 		
-		orderList = statsDao.selectOrderCntByYM(fromYM, toYM);
+		orderList = statsDao.selectOrderReviewAvgGoodsRank(fromYM, toYM);
 		//priceList = statsDao.selectOrderTotalPriceByYM(fromYM, toYM);
 		
 		Gson gson = new Gson();
@@ -45,7 +55,12 @@ public class OrderRestController extends HttpServlet {
 		out.flush();
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

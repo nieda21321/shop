@@ -40,7 +40,7 @@
 				</tr>
 				<tr>
 				<td>
-					<select>
+					<select name = "cartQuantity">
 						<c:forEach var = "n" begin = "1" end = "10">
 							<option value = "${n}"><${n}></option>
 						</c:forEach>
@@ -59,12 +59,14 @@
 <script>
 	$('#cartBtn').click(function() {
 		
-		$('#myForm').attr('action', $('#contextPath') + "/customer/insertCart" )
+		$('#myForm').attr('action', $('#contextPath') + "/customer/goods/addCart" );
+		$('#myForm').submit();
 	});
 	
 	$('#orderBtn').click(function() {
 		
-		$('#myForm').attr('action', $('#contextPath') + "/customer/insertOrders" )
+		$('#myForm').attr('action', $('#contextPath') + "/customer/goods/addOrders" );
+		$('#myForm').submit();
 	});
 </script>
 </html>

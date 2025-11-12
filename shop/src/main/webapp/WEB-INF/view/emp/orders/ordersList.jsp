@@ -27,7 +27,7 @@ $(function(){
         let currentPage = parseInt('${currentPage}');
         let lastPage = parseInt('${lastPage}');
         if (currentPage < lastPage) {
-            location.href = '${pageContext.request.contextPath}/emp/orders/orderList?currentPage=' + (currentPage + 1);
+            location.href = '${pageContext.request.contextPath}/emp/orders/ordersList?currentPage=' + (currentPage + 1);
         } else {
             alert('마지막 페이지입니다.');
         }

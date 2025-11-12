@@ -19,8 +19,8 @@ import dao.StatsDao;
 /**
  * Servlet implementation class TotalOrderAndPriceRestController
  */
-@WebServlet("/totalOrder")
-public class TotalOrderRestController extends HttpServlet {
+@WebServlet("/emp/stats/orderTotalPriceByYM")
+public class SelectOrderTotalPriceByYMRestController extends HttpServlet {
 
 	
 	private StatsDao statsDao;
@@ -28,6 +28,10 @@ public class TotalOrderRestController extends HttpServlet {
 	
 	/**
 	 * 
+ 	 * 2025. 11. 11.
+	 * Author - tester
+	 * 관리자 - 통계관리
+	 * 특정년도의 월별 누적 주문금액 : 선 차트
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -41,7 +45,7 @@ public class TotalOrderRestController extends HttpServlet {
 		List<Map<String, Object>> orderList = new ArrayList<Map<String,Object>>();
 		//List<Map<String, Object>> priceList = new ArrayList<Map<String,Object>>();
 		
-		orderList = statsDao.selectOrderTotalCntByYM(fromYM, toYM);
+		orderList = statsDao.selectOrderTotalPriceByYM(fromYM, toYM);
 		//priceList = statsDao.selectOrderTotalPriceByYM(fromYM, toYM);
 		
 		Gson gson = new Gson();

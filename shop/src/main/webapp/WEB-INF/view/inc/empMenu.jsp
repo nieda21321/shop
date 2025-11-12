@@ -13,6 +13,8 @@
         <a href="${pageContext.request.contextPath}/emp/goods/goodsList">상품관리</a>
         <a href="${pageContext.request.contextPath}/emp/orders/ordersList">주문관리</a>
         <a href="${pageContext.request.contextPath}/emp/notice/noticeList">공지관리</a>
+        <a href="${pageContext.request.contextPath}/emp/question/questionList">주문질문관리</a>
+        <a href="${pageContext.request.contextPath}/emp/review/reviewList">상품리뷰관리</a>
         <%-- AJax 비동기적으로 --%>
         <a href="${pageContext.request.contextPath}/emp/stats/statsList">통계자료</a>
     </div>

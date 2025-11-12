@@ -1,0 +1,98 @@
+    body {
+        font-family: "Noto Sans KR", sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+        margin: 0;
+        padding: 2rem;
+    }
+
+    h1 {
+        text-align: center;
+        color: #212529;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+    }
+
+    hr {
+        margin: 1rem 0 2rem 0;
+        border: 0;
+        height: 1px;
+        background: #dee2e6;
+    }
+
+    /* 날짜 입력 구역 */
+    input[type="text"] {
+        padding: 0.4rem 0.8rem;
+        border: 1px solid #ced4da;
+        border-radius: 8px;
+        background-color: white;
+        font-size: 0.95rem;
+        margin-right: 0.5rem;
+    }
+
+    /* 버튼 그룹 */
+    button {
+        background: linear-gradient(135deg, #007bff, #339af0);
+        border: none;
+        color: white;
+        border-radius: 8px;
+        padding: 0.5rem 0.9rem;
+        margin: 0.3rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.9rem;
+    }
+
+    button:hover {
+        background: linear-gradient(135deg, #0056b3, #1c7ed6);
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    }
+
+    /* 버튼 색상 개별화 */
+    #totalPriceBtn { background: linear-gradient(135deg, #0d6efd, #3b8bfd); }
+    #totalOrderBtn { background: linear-gradient(135deg, #6610f2, #845ef7); }
+    #reviewAvgRankBtn { background: linear-gradient(135deg, #fd7e14, #ffa94d); }
+    #goodsPriceRankBtn { background: linear-gradient(135deg, #6f42c1, #9775fa); }
+    #customerPriceRankBtn { background: linear-gradient(135deg, #17a2b8, #22b8cf); }
+    #goodsCntRankBtn { background: linear-gradient(135deg, #ffc107, #ffd43b); color: #333; }
+    #customerCntRankBtn { background: linear-gradient(135deg, #28a745, #51cf66); }
+    #genderOrderBtn { background: linear-gradient(135deg, #e83e8c, #f783ac); }
+    #orderCntByGenderBtn { background: linear-gradient(135deg, #20c997, #63e6be); }
+    #orderPriceByYMBtn { background: linear-gradient(135deg, #198754, #69db7c); }
+    #orderCntByYMBtn { background: linear-gradient(135deg, #0ca678, #63e6be); }
+
+    /* 버튼 컨테이너 */
+    .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        gap: 0.5rem;
+    }
+
+    /* 차트 영역 */
+    #myChart {
+        display: block;
+        margin: 0 auto;
+        max-width: 900px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        padding: 1rem;
+    }
+
+    /* 반응형 */
+    @media (max-width: 768px) {
+        body {
+            padding: 1rem;
+        }
+        button {
+            font-size: 0.85rem;
+            padding: 0.45rem 0.8rem;
+        }
+        #myChart {
+            max-width: 100%;
+        }
+    }

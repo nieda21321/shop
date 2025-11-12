@@ -53,7 +53,7 @@
 				<tr>
 					<td>id</td>
 					<td>
-						<input type = "text" name = "id" id = "id" value = "customer01">
+						<input type = "text" name = "id" id = "id" value = "admin01">
 					</td>
 				</tr>
 				<tr>
@@ -66,8 +66,8 @@
 			<button type = "button" id = "loginButton">로그인</button>
 		</div>
 		<div>
-			<input type = "radio" name = "customerOrEmpSel" class = "customerOrEmpSel" value ="customer"  checked="checked">customer
-			<input type = "radio" name = "customerOrEmpSel" class = "customerOrEmpSel" value ="emp">emp
+			<input type = "radio" name = "customerOrEmpSel" class = "customerOrEmpSel" value ="customer">customer
+			<input type = "radio" name = "customerOrEmpSel" class = "customerOrEmpSel" value ="emp"  checked="checked">emp
 		</div>
 	</div>
 	</form>

@@ -39,7 +39,7 @@ public class OrdersDao {
 				         orders o
 				    INNER JOIN goods    g ON o.goods_code = g.goods_code
 				    INNER JOIN customer c ON o.customer_code = c.customer_code
-				    INNER JOIN address  a ON o.address_code = a.address
+				    INNER JOIN address  a ON o.address_code = a.address_code
 				    INNER JOIN GOODS_IMG gi ON o.GOODS_CODE = gi.GOODS_CODE 
 				ORDER BY
 				    o.order_code DESC
@@ -69,7 +69,7 @@ public class OrdersDao {
 		    m.put("customerName",  rs.getString("customerName"));
 		    m.put("customerPhone", rs.getString("customerPhone"));
 		    m.put("address",       rs.getString("address"));
-		    m.put("filename",       rs.getString("filename"));
+		    m.put("fileName",       rs.getString("fileName"));
 		    list.add(m);
 		}
 		
@@ -116,7 +116,7 @@ public class OrdersDao {
 				         orders o
 				    INNER JOIN goods    g ON o.goods_code = g.goods_code
 				    INNER JOIN customer c ON o.customer_code = c.customer_code
-				    INNER JOIN address  a ON o.address_code = a.address
+				    INNER JOIN address  a ON o.address_code = a.address_code
 				    INNER JOIN GOODS_IMG gi ON o.GOODS_CODE = gi.GOODS_CODE 
 				)
 				""";
