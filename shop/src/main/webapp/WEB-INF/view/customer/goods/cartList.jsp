@@ -13,7 +13,7 @@
 	<h1></h1>
 	<c:import url="/WEB-INF/view/inc/customerMenu.jsp"></c:import>
 
-	<form action="">
+	<form action="" method = "post">
 		<table>
 			<tr>
 				<th>선택</th>
@@ -30,7 +30,7 @@
 							soldout
 						</c:if>
 						<c:if test="${m.soldout != 'soldout'}">
-							<input type = "checkbox" name = "ck" value = "${m.cartCode}">
+							<input type = "checkbox" name = "cartCodeList" value = "${m.cartCode}">
 						</c:if>
 					</td>
 					<td>${m.goodsName}</td>

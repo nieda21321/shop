@@ -13,6 +13,67 @@ import dto.Address;
 
 public class AddressDao {
 	
+	
+	public List<Address> selectAddressList(int customerCode) {
+		
+		List<Address> list = new ArrayList<Address>();
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+
+		String sql = """
+				
+				select address_code as addressCode, address from address where customerCode = ?
+				
+				""";
+		
+		try {
+			
+			conn = DBConnection.getConn();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, customerCode);
+			rs = psmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				Address address = new Address();
+				address.setAddressCode(rs.getInt("addressCode"));
+				address.setAddress(rs.getString("address"));
+				list.add(address);
+			}
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				
+				if ( rs != null ) {
+					
+					rs.close();
+				}
+				if ( psmt != null ) {
+					
+					psmt.close();
+				}
+				if ( conn != null ) {
+					
+					conn.close();
+				}
+				
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
+	
+	
 	/**
 	 * 2025. 11. 06.
 	 * Author - tester

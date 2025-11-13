@@ -3,12 +3,94 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dto.Orders;
+
 public class OrdersDao {
+	
+	
+	
+	public int insertOrders(Orders o) {
+		
+		int row = 0;
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		String sql = """
+				
+				INSERT
+					INTO
+					ORDERS (order_code,
+					goods_code,
+					customer_code,
+					address_code,
+					order_quantity,
+					order_price,
+					order_state,
+					createdate)
+				VALUES (seq_order.nextval,
+				?,
+				?,
+				?,
+				?,
+				?,
+				'주문완료',
+				sysdate)
+				
+				""";
+		
+		try {
+			
+			conn = DBConnection.getConn();
+			conn.setAutoCommit(false);
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, o.getGoodsCode());
+			psmt.setInt(1, o.getCustomerCode());
+			psmt.setInt(1, o.getAddressCode());
+			psmt.setInt(1, o.getOrderQuantity());
+			psmt.setInt(1, o.getOrderPrice());
+			
+			row = psmt.executeUpdate();
+			
+			conn.commit();
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				
+				if(psmt != null) {
+					
+					psmt.close();
+				}
+				
+				if(conn != null) {
+				
+					conn.close();
+				}
+				
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}
+		
+		return row;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	public List<Map<String,Object>> selectOrdersList(int beginRow, int rowPerPage) throws Exception{
 		
